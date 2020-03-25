@@ -1,0 +1,57 @@
+.login-page{
+    background-image: url('./cidadenoturna.jpg');
+}
+#register-logo{
+    color:rgb(137, 255, 245);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.input-row #usuario{
+    width: 80%;
+    border-radius: 10px;
+   padding: 10px;
+   margin-top: 10px;
+    background-color: #00acba;
+    align: center;
+    margin-left: 50px;
+}
+.input-row #senha{
+    width: 80%;
+    border-radius: 10px;
+   padding: 10px;
+   margin-top: 10px;
+    background-color: #00acba;
+    align: center;
+    margin-left: 50px;
+}
+.input-row #button{
+    width: 80%;
+    margin-left:50px;
+    border-radius: 15px;
+    background-color:#00acba;
+
+}
+.input-row #h2{
+    color: seashell;
+}
+#link{
+    margin-left: 60px;
+}
+.form-message-valid{
+    margin-left: 60px;
+    color: blue;
+    align-items: center;
+}
+.form-message-invalid{
+    margin-left: 50px;
+    color: rgb(240, 48, 48);
+    align-items: center;
+}
+ .label{
+     display: flex;
+    justify-content: center;
+    font-size: 35px;
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#00acba;
+
+}
