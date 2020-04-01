@@ -32,7 +32,6 @@ import Button from '@material-ui/core/Button';
 import logo from './pant.jpg';
 import log from '../Header/logotipo-AKi-azul.png';
 import Grid from '@material-ui/core/Grid';
-import Evento from '../Evento/index';
 import Container from '@material-ui/core/Container';
 import Devices from  '@material-ui/icons/Grain';
 import './css.css';
@@ -57,6 +56,57 @@ const messages = [
     secondary: 'Evento 3',
     person: logo,
   },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  {
+    id: 2,
+    primary: 'Evento 2',
+    secondary: `Evento 2`,
+    person: logo,
+  },
+  
+  
+  
 
  
 ];
@@ -231,7 +281,7 @@ export default function BottomAppBar() {
           ))}
         </Grid>
       </Container>
-      <div style={{background:'#00ACBA', marginBottom:"50px"}}>
+      <div style={{background:'#00ACBA'}}>
          <Grid container>
            
             <Grid item xs={6}>
@@ -261,29 +311,7 @@ export default function BottomAppBar() {
           
       </div>
         
-      <AppBar position="fixed"  className={classes.appBar}>
-        <Toolbar>
-         
-          <Fab className={classes.div} aria-label="add" className={classes.fabButton}>
-            < Evento />
-          </Fab>
-          <div className={classes.grow} />
-          <IconButton edge="end" color="blue">
-            <Link to="/login"><Perfil/></Link>
-          </IconButton>
-          <IconButton edge="end" color="blue">
-            <Ass />
-          </IconButton>
-          <IconButton color="blue">
-            <SearchIcon />
-          </IconButton>
-          <IconButton edge="end" color="blue">
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      
-
+     
     </React.Fragment>
   );
 }

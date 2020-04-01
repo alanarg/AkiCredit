@@ -92,15 +92,14 @@
     margin-left: 50px;
 }
 .input-row #button{
-    width: 80%;
-    margin-left:50px;
+    width: 82%;
+    margin-left:45px;
     border-radius: 15px;
     background-color:#00acba;
 
 }
-.input-row #button2{
-    width: 50%;
-    margin-left:50px;
+.input-row #reset{
+    width: 100%;
     border-radius: 15px;
     background-color:#00acba;
     height: px;

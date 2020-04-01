@@ -102,7 +102,7 @@ function Login(){
             setTimeout(()=>{
               resetForm();
               setSubmitting(false);
-              history.push("/");
+              history.push("/esc");
             })
           }}
 

@@ -94,8 +94,14 @@ export default class Cadastro extends React.Component {
                             <Error className="err" touched={touched.esc} message={errors.esc}/>
                         </div>
                         <div className="input-row">
-                            <button type="submit" id="button" className="button">Register</button>
-                            <button type="reset" className="btn btn-secondary">Reset</button>
+                            <div>
+                            <button type="submit" id="reset" className="button">Register</button>
+
+                            </div>
+                            <div>
+                            <button type="reset" id="reset">Reset</button>
+
+                            </div>
                         </div>
                     </Form>
                 )}

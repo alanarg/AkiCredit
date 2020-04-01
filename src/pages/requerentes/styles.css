@@ -1,0 +1,31 @@
+.requisicoes{
+    width: 100%;
+
+}
+.requisicoes ul{
+    display: grid;
+    grid-column: auto;
+    margin: 20px;
+
+}
+.listagem {
+    margin: 10px;
+    grid-template-columns: 4fr 4fr;
+    justify-self: center;
+    align-items: flex-end;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    direction: ltr;
+
+}
+.requisicoes ul li{
+    background-color: #ffff;
+    padding: 24px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    border-style: double;
+}
