@@ -24,6 +24,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import './css.css';
 import Cadastro from './cadastro';
+import api from '../../services/api';
 
 function Copyright() {
   return (
@@ -76,10 +77,9 @@ const useStyles = makeStyles(theme => ({
 
 
 const loginSchema = Yup.object().shape({
-  usuario: Yup.string().min(4, "Tem que haver no mínimo quatro caracteres")
-  .max(255)
+  email: Yup.string()
   .required("Obrigatório"),
-  senha: Yup.string().min(6).required("Obrigatório")
+  password: Yup.string().min(6).required("Obrigatório")
   
 });
 
@@ -95,15 +95,32 @@ function Login(){
         <Paper>
           <LockOutlinedIcon></LockOutlinedIcon>
   <Formik 
-          initialValues={{usuario:"", senha: ""}}
+          initialValues={{email:"", password: ""}}
           validationSchema={loginSchema}
-          onSubmit={(values ,{setSubmitting, resetForm})=>{
-            setSubmitting(true);
-            setTimeout(()=>{
-              resetForm();
-              setSubmitting(false);
-              history.push("/esc");
-            })
+          onSubmit={async (values)=>{
+            
+            console.log(values);
+
+
+            try{
+              const resposta = await api.post('/signIn',values,  {headers: {'Content-Type': 'application/json'}} );
+              console.log(resposta);
+              if(resposta.data==="Signed in successfully"){
+                alert("logado");
+                localStorage.setItem("U_ID", resposta.data.uid);
+                history.push('/');
+
+
+              }
+            }catch(error){
+              return console.log(error);
+
+            }
+            // setTimeout(()=>{
+            //   resetForm();
+            //   setSubmitting(false);
+            //   // history.push("/esc");
+            // })
           }}
 
   >
@@ -112,41 +129,41 @@ function Login(){
   })=>(
       <form className={classes.form} onSubmit={handleSubmit}>
         <div className="input-row">
-          <label className="label" htmlFor="usuario">Usuário</label>
+          <label className="label" htmlFor="email">Email</label>
           <input 
-            type="text"
-            name="usuario"
-            id="usuario"
-            placeholder="Nome de usuário"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
             onChange={handleChange}
-            value={values.usuario}
+            value={values.email}
             //Quando está ou não no campo 
             onBlur={handleBlur}
             
           />
-        <Error className="err"touched={touched.usuario} message={errors.usuario}/>
+        <Error className="err"touched={touched.email} message={errors.email}/>
         </div>
         <div className="input-row">
-          <label className="label" htmlFor="senha">Senha</label>
+          <label className="label" htmlFor="password">Senha</label>
           <input 
             type="password"
-            name="senha"
+            name="password"
             id="senha"
             placeholder="Sua senha"
             onChange={handleChange}
-            value={values.senha}
+            value={values.password}
             //Quando está ou não no campo 
             onBlur={handleBlur}
-            className={touched.senha && errors.senha ? "has-error": null}
+            className={touched.password && errors.password ? "has-error": null}
 
             
           />
-        <Error touched={touched.senha} message={errors.senha}/>
+        <Error touched={touched.password} message={errors.password}/>
 
 
         </div>
         <div className="input-row">
-          <button id="button" type="submit" disabled={isSubmitting}><h2 id="h2">Entrar</h2></button>
+          <button className="button" type="submit" disabled={isSubmitting}><h2 id="h2">Entrar</h2></button>
         </div>
         
       </form>

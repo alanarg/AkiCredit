@@ -13,6 +13,7 @@ import {Paper, Grid, List, ListItem, ListItemText, ListItemAvatar, Typography} f
 const useStyles = makeStyles({
     root:{
         width:'100%',
+        marginLeft:'2px'
     },
    
     inline: {
@@ -27,13 +28,13 @@ const Requerentes = (props) =>{
     return(
         <>
             <div className="requisicoes">
-            <Header className={classes.root} />    
+            <Header className="header" />    
         
                         <ul>
                             {requerentes.map(requerente => (
                                 
                                 <li key={requerente.id}>
-                                        <Avatar sizes="large">A</Avatar>
+                                        <Avatar style={{width:'100px', height:'100px'}}>A</Avatar>
                                         <strong>{requerente.nome}</strong>
 
                                          <p>
@@ -53,11 +54,7 @@ const Requerentes = (props) =>{
                                 </li>
 
                             ))}}
-                        </ul>
-
-
-
-            
+                        </ul>      
             </div>
         </>
 

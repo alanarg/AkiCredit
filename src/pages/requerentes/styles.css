@@ -1,12 +1,14 @@
 .requisicoes{
     width: 100%;
-
+    justify-content: center;
 }
 .requisicoes ul{
     display: grid;
     grid-column: auto;
-    margin: 20px;
 
+}
+.header{
+    margin-left: 1000px;
 }
 .listagem {
     margin: 10px;
@@ -14,6 +16,7 @@
     justify-self: center;
     align-items: flex-end;
 }
+
 .item{
     display: flex;
     justify-content: space-between;
@@ -25,7 +28,7 @@
     padding: 24px;
     margin-top: 15px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     border-radius: 8px;
-    border-style: double;
 }

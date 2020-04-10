@@ -46,7 +46,7 @@ const ButtonAppBar = () => {
       <AppBar position="flex" className={classes.color}>
         <Toolbar>
           <div >
-          <img src={Logo} alt="aaa" width="10%"></img>
+          <a href="/"><img src={Logo} alt="aaa" width="10%"></img></a>
           </div>
           <div>
           <IconButton edge="end" color="#00acba">
