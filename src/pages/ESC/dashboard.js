@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import Me from '../Header/menu';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -155,6 +156,8 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          {/* Menu  */}
+          <Me/>
         </Toolbar>
       </AppBar>
       <Drawer

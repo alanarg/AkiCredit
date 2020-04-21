@@ -1,119 +1,34 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../Header/index';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Padeiro from './padeiro.jpg';
+import Requ from '@material-ui/icons/HowToReg';
+import World from '@material-ui/icons/Language';
+import Secure from '@material-ui/icons/Security';
+import Store from '@material-ui/icons/Storefront';
+import Rend from '@material-ui/icons/Timeline';
 import Paper from '@material-ui/core/Paper';
-import Fab from '@material-ui/core/Fab';
-import Perfil from '@material-ui/icons/AccountCircle';
-import Ass from '@material-ui/icons/Assignment';
-import {Link} from 'react-router-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Avatar from '@material-ui/core/Avatar';
-import MenuIcon from '@material-ui/icons/Menu';
 import aki from './Icon-Aki-2-branco.png';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import logo from './pant.jpg';
 import log from '../Header/logotipo-AKi-azul.png';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Devices from  '@material-ui/icons/Grain';
+import { useHistory } from "react-router-dom";
+
 import './css.css';
 
-const messages = [
-  {
-    id: 1,
-    primary: 'Evento 1',
-    secondary: "evento 1",
-    person: logo,
-    logo:logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 3,
-    primary: 'Eveno 3',
-    secondary: 'Evento 3',
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  {
-    id: 2,
-    primary: 'Evento 2',
-    secondary: `Evento 2`,
-    person: logo,
-  },
-  
-  
-  
-
- 
-];
 const tiers = [
   {
-    title: 'De quanto você precisa?',
-    price: '$$$',
+    title: 'Controle de requerentes',
     description: ['Já se decidiu?', 'Use o botão +', 'Preencha o formulário'],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
@@ -191,120 +106,217 @@ const useStyles = makeStyles(theme => ({
 
 export default function BottomAppBar() {
   const classes = useStyles();
+  let history = useHistory();
 
+  function reque(){
+    return history.push('/requerentes')
+  }
+  function usuario(){
+    return history.push('/usuario')
+  }
+  function dash(){
+    return history.push('/esc')
+  }
   return (
     <React.Fragment>
         
-        <Header/>
-        <br></br>
-        <br></br>
-        <br></br>
+        <Header position="fixed"/>
+        
       
 
       <CssBaseline />
-        <Grid container>
-        <div  width="100%" height="100%" style={{backgroundImage:`url(${Padeiro})`, marginTop:"-50px",backgroundRepeat:"no-repeat", backgroundPosition:"center"}}>
-        
+        <Grid container style={{backgroundImage:`url(${Padeiro})`, backgroundSize:'100%', backgroundColor:'#E0F8F7', padding:'50px',backgroundRepeat:"no-repeat", marginTop:'10px'}}>
+        {/* <div style={{backgroundImage:`url(${Padeiro})`, backgroundSize:'100%',width:'100%', marginTop:"-50px",backgroundRepeat:"no-repeat", backgroundPosition:"center"}}> */}
         <Grid
             container
            direction="column"
-           justify="space-around"
+           justify="space-between"
            alignItems="flex-end"
            xs={12} sm={6}
           >
+            <Grid item >
             <img alt="logo"  width="45%" src={log}></img>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #FFFFFF 80%)", borderRadius:"100px", marginTop:"100px", marginBottom:"15px"}}>
-           <Typography gutterBottom variant="h5" className={classes.text} component="h2">
+
+            </Grid>
+            <Grid item xs>
+           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #E0F8F7 70%)", borderRadius:"100px",padding:'10px', marginBottom:'50px', marginTop:'30px'}}>
+           <Typography variant="h6">
            <Devices/>
-           <b>Marketing e gestão</b>
+           Você Empresa Simples de Crédito!
 
               </Typography>
            </Paper>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg,#00ACBA 40%, #FFFFFF 80%)", borderRadius:"100px", marginTop:"20px", marginBottom:"15px"}}>
-           <Typography gutterBottom variant="h5" className={classes.text} component="h2">
+           </Grid>
+           <Grid item xs>
+           <Paper elevation={3} style={{background:"linear-gradient(45deg,#00ACBA 40%, #E0F8F7 70%)", borderRadius:"100px",padding:'10px', marginBottom:'50px' }}>
+           <Typography variant="h6">
            <Devices />
 
-           <b>Crédito superdigital</b>
+           Tenha total supervisão tributária
 
               </Typography>
            </Paper>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #FFFFFF 80%)",borderRadius:"100px", marginTop:"20px", marginBottom:"15px"}}>
-           <Typography gutterBottom variant="h5" className={classes.text} component="h2">
+           </Grid>
+           <Grid item xs>
+           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #E0F8F7 70%)",borderRadius:"100px", padding:'10px'}}>
+           <Typography variant="h6" fontFamily="baboo">
            <Devices />
 
-           <b>O que falta para você crescer?</b>
+           Planeje e aprove requisições
               </Typography>
            </Paper>
+           </Grid>
         </Grid>
     
-        </div>
+        {/* </div> */}
         </Grid>
         <br></br>
         <br></br>
-        <Container maxWidth="md" component="main" style={{marginBottom:"70px"}}>
-        <Grid container spacing={5} alignItems="flex-end">
-          {tiers.map(tier => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+        <Container maxWidth="md" flexDirestion="row" component="main" style={{marginBottom:"70px", marginTop:'20px',}}>
+        <Grid container spacing={5} justify="space-between" alignItems="center" style={{backgroundColor:'#E0F8F7'}}>
+        <Divider/>
+
+            <Grid item xs style={{backgroundColor:'#E0F8F7'}}>
               <Card > 
                 <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
+                  title="Encontre requerentes em sua cidade"
+                  subheader="Filtragens de perfis para sua ESC"
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={classes.cardHeader}
+                />
+                <CardContent root=".MuiCardContent-root">
+                  <div >
+                      <Requ style={{width:'100%', height:'150px', color:'#00acba'}}></Requ>
+                   
+                  </div>
+                
+                </CardContent>
+                <CardActions>
+                  <Button onClick={reque} fullWidth variant="outlined"  style={{borderColor:'#00acba', color:"#00acba"}}>
+                  Pesquisar requisições
+                  </Button>
+                </CardActions>
+              </Card>
+             
+            </Grid>
+            <Grid item  xs  style={{backgroundColor:'#E0F8F7'}}>
+              <Card > 
+                <CardHeader
+                  title="Gerencie pagamentos e sócios"
+                  subheader="Emissão de contratos e boletos bancários"
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
                   className={classes.cardHeader}
                 />
                 <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      /mo
-                    </Typography>
+                  <div >
+                      
+                  <Store style={{width:'100%', height:'150px', color:'#00acba'}}></Store>
                   </div>
-                  <ul>
-                    {tier.description.map(line => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
+                
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
-                    {tier.buttonText}
+                  <Button onClick={usuario} fullWidth variant="outlined" style={{borderColor:'#00acba', color:"#00acba"}}>
+                    Administrar minha ESC
                   </Button>
                 </CardActions>
               </Card>
+             
             </Grid>
-          ))}
+            <Grid item  xs  style={{backgroundColor:'#E0F8F7'}}>
+              <Card > 
+                <CardHeader
+                  title="Acompanhe  rendimentos"
+                  subheader="Mantenha contato com seus clientes e programe notificações"
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={classes.cardHeader}
+                />
+                <CardContent>
+                  <div >
+                  <Rend style={{width:'100%', height:'150px', color:'#00acba'}}></Rend>
+
+                   
+                  </div>
+                
+                </CardContent>
+                <CardActions>
+                  <Button fullWidth variant="outlined" color="primary"   style={{borderColor:'#00acba', color:"#00acba"}}>
+                    botao
+                  </Button>
+                </CardActions>
+              </Card>
+            
+             
+            </Grid>
+               <Divider/>
         </Grid>
       </Container>
+
       <div style={{background:'#00ACBA'}}>
-         <Grid container>
+         <Grid container  
+          direction="row"
+           justify="center"
+           alignItems="flex-start"
+           xs={12}
+           >
            
-            <Grid item xs={6}>
+            <Grid item xs={12} >
               <CardContent>
-                      <Typography variant="h4">
-                        Titulo 1
-                      </Typography>
+                     <Secure style={{width:'100%', height:'150px', color:'#FFFFFF'}} ></Secure>
+                     <Typography variant="h4" align="center">
+                       Segurança e privacidade 
+                     </Typography>
+                     <br></br>
+                     <Typography variant="h6" align="center" >
+                       Todas as negociações acontecidas são protegidas e visualizáveis 
+                     </Typography>
+                     <Typography variant="h6" align="center" >
+
+                     apenas aos sócios integrantes da empresa, assim como a identidade da mesma, 
+                     </Typography>
+                     <Typography variant="h6" align="center" >
+
+                     apenas revelada aos requerentes aceitos.
+                     </Typography>
+
+
               </CardContent>
             
             </Grid>
-            <Grid item xs={3}>
-              <Typography variant="h4">
-                Titulo 2
-              </Typography>
+            <Grid item xs={12}>
+            <CardContent>
+                     <World style={{width:'100%', height:'150px', color:'#FFFFFF'}} ></World>
+                     <Typography variant="h4" align="center">
+                       Faça parte dessa evolução  
+                     </Typography>
+                     <br></br>
+
+                     <Typography variant="h6" align="center" >
+                       Todas as negociações acontecidas são protegidas e visualizáveis 
+                     </Typography>
+                     <Typography variant="h6" align="center" >
+
+                     apenas aos sócios integrantes da empresa, assim como a identidade da mesma,  
+                     </Typography>
+                     <Typography variant="h6" align="center" >
+
+                     apenas revelada aos requerentes aceitos.
+                     </Typography>
+
+              </CardContent>
             </Grid>
-            <Grid item xs={3} >
+            <Grid item xs={12}>
+                <CardContent>
             <CardMedia
             component="img"
             alt="Contemplative Reptile"
-            style={{marginTop:"15px", marginBottom:"15px", marginRight:"30px", maxWidth:"100%"}}
+            style={{margin:"20px", marginLeft:'36%',maxWidth:"30%"}}
             image={aki}
 
             ></CardMedia>
+            </CardContent>
             </Grid>
             </Grid>
             

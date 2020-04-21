@@ -1,23 +1,22 @@
-import React from "react"
+import React, {useState} from "react"
 import {Formik} from "formik";
 import * as Yup from "yup";
 import Error from "./error";
-import { withRouter } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import Alert from '@material-ui/lab/Alert';
+import { withRouter, Redirect } from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import history from '../../history';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Header from '../Header/index';
 import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -83,11 +82,33 @@ const loginSchema = Yup.object().shape({
   
 });
 
+
 function Login(){
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [openErro,setOpenErro] = useState(false);
+  const [erro, setErro] = useState('');
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
+  function sucessoMessage(){
+    return setOpen(true);
+  }
+
+  function erroMessage(erro){
+    return setOpenErro(true);
+
+  }
+  
   return( 
     <>
+    {localStorage.getItem('U_ID') && history.push('/')}
     <Header></Header>
+
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -98,29 +119,51 @@ function Login(){
           initialValues={{email:"", password: ""}}
           validationSchema={loginSchema}
           onSubmit={async (values)=>{
-            
-            console.log(values);
-
 
             try{
+              setLoading(true);
+
+             
               const resposta = await api.post('/signIn',values,  {headers: {'Content-Type': 'application/json'}} );
-              console.log(resposta);
-              if(resposta.data==="Signed in successfully"){
-                alert("logado");
-                localStorage.setItem("U_ID", resposta.data.uid);
-                history.push('/');
+
+              if(resposta.data.success==="Signed in successfully"){
+                sucessoMessage();
+                localStorage.setItem("U_ID", resposta.data.user.uid);
+                // setUsua(resposta.data.user);
+                try{
+                    const escverify =  await api.get('/esc', {headers:{'Authorization': resposta.data.user.uid}});
+                    if(escverify === "Esc does not exist!"){
+                      dispatch({type:'ESC_OBJECT', exists:'não'});
+                    }else{
+                      dispatch({type:'ESC_OBJECT', exists:'sim'});
+                    }
+                }catch(error){
+                  console.log(error);
+                }
+                
+                dispatch({type:'USER_DATA', user:resposta.data.user});
+                setLoading(false);
+                 history.push('/');
 
 
-              }
+              } 
+              
+
+
             }catch(error){
-              return console.log(error);
+              setLoading(false);
+              const e = error.response.data.error;
+              if(e === "There is no user record corresponding to this identifier. The user may have been deleted."){
+                setErro("Não existe usuário com o respectivo email!");
+                erroMessage();
+            }else if(e === "The password is invalid or the user does not have a password." ){
+              setErro("Senha incorreta!");
+              erroMessage();
+            }
 
             }
-            // setTimeout(()=>{
-            //   resetForm();
-            //   setSubmitting(false);
-            //   // history.push("/esc");
-            // })
+
+           
           }}
 
   >
@@ -163,7 +206,9 @@ function Login(){
 
         </div>
         <div className="input-row">
-          <button className="button" type="submit" disabled={isSubmitting}><h2 id="h2">Entrar</h2></button>
+          <button className="button" type="submit" disabled={isSubmitting}><h2 id="h2">Entrar</h2>
+          {loading && <CircularProgress style={{BackgroundColor:'#fffff'}}/>}
+          </button>
         </div>
         
       </form>
@@ -185,6 +230,16 @@ function Login(){
     </Paper>
     </Grid>
     </Grid>
+    <Snackbar open={open} autoHideDuration={6000} >
+        <Alert severity="success">
+          Logado!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={openErro} autoHideDuration={6000} >
+        <Alert severity="error">
+         {erro}
+        </Alert>
+      </Snackbar>
     </>
 
 

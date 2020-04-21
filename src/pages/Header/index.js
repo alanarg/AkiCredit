@@ -1,24 +1,24 @@
-import React,{Component} from 'react';
+import React,{useState} from 'react';
+import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import {AppBar} from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import {Link} from 'react-router-dom'; 
+import Menu from './menu';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Conta from '@material-ui/icons/AccountCircle';
-import Perfil from '@material-ui/icons/AccountCircle';
+import Perfil from '@material-ui/icons/MeetingRoom';
 import {withRouter} from 'react-router-dom';
-
 import { useHistory } from "react-router-dom";
 import Logo from './logotipo-AKi-azul.png';
-import ass from '@material-ui/icons/Assignment';
+import Grid from '@material-ui/core/Grid';
 
 
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow:1
   },
   color:{
     background: '#FFFCFC',
@@ -33,27 +33,45 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ButtonAppBar = () => {
+  const [anchor, setAnchor] = useState(null);
+  const user_data= useSelector (state=> state.usuario.user)
   
+  
+   function verify(u){
+    if(u === null ||u === "undefined" ){
+      return <Link to="/login"><Perfil /></Link>
+    
+     }else{
+     return <><Typography variant="h6">Olá, {user_data.nome}</Typography><Avatar style={{marginRight:'5px'}}>U</Avatar><Menu/></>
+     }
+   }
 
-    let history = useHistory();
-
-    function handleClick() {
-      history.push("/user");
-    }
+    
     const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="flex" className={classes.color}>
+     
+      <AppBar position="block" className={classes.color}>
         <Toolbar>
-          <div >
-          <a href="/"><img src={Logo} alt="aaa" width="10%"></img></a>
-          </div>
-          <div>
+        <Grid container xs>
+        <Grid item xs={4}>
+
+          <a href="/"><img src={Logo} alt="aaa" width="150vw"></img></a>
+          </Grid>
+          <Grid item align="right" xs={8} >
           <IconButton edge="end" color="#00acba">
-            <Link to="/login"><Perfil/></Link>
+            {
+              
+               verify(localStorage.getItem('U_ID'))
+            
+            }
+            
           </IconButton>
-          </div>
+
+          </Grid>
+
         
+          </Grid>
         
         </Toolbar>
         

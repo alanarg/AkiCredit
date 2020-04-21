@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './css.css';
 import ReactDOM from 'react-dom';
 import api from '../../services/api';
@@ -16,6 +17,7 @@ import { validate as validateCPF} from 'gerador-validador-cpf';
 const Cadastro = () => {
     const [cpfv,setCpf] = useState('');
     const [cnpjv,setCnpj] = useState('');
+    const [loading, setLoading] = useState(false);
     
     
 
@@ -61,15 +63,18 @@ const Cadastro = () => {
 
                    console.log(data);
                  try{
+                    setLoading(true);
                    const resposta = await api.post('/signUp', data, {headers: {'Content-Type': 'application/json'}});
                         console.log(resposta.data);
                         if(resposta.data.success === 'User successfully signed up'){
                             alert("Cadastrado");
+                            setLoading(false);
                             history.push("/login");
 
                         }
                     
                  }catch(error){
+                    setLoading(false);
                      alert('erro no cadastro');
                  }
 
@@ -126,7 +131,7 @@ const Cadastro = () => {
                             <div>
                                 
                             <button type="submit" className="reset" className="button">Register</button>
-
+                            {loading && <CircularProgress/>}
                             </div>
                             <div>
                             <button type="reset" className="reset">Reset</button>
