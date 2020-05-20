@@ -10,13 +10,18 @@ import axios from "axios";
 import $ from 'jquery';
 import cnpj from 'cpf-cnpj-validator';
 import history from '../../history';
+import Typography from '@material-ui/core/Typography';
 import validCnpj from './validCnpj';
+import {Checkbox } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import { validate as validateCPF} from 'gerador-validador-cpf';
 
     
 const Cadastro = () => {
     const [cpfv,setCpf] = useState('');
     const [cnpjv,setCnpj] = useState('');
+    const [check, setCheck] = useState(false);
     const [loading, setLoading] = useState(false);
     
     
@@ -82,6 +87,9 @@ const Cadastro = () => {
                 render={
                     ({ values,errors, status, touched,props }) => (
                     <Form>
+
+                        <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(true))} />} label="Sou um empresa simples de crédito"/>
+                        { check?<p style={{color:'#00acba'}}>Sua informações serão verificadas</p>:null}
                         <div className="input-row">
                             <label className="labelc" htmlFor="nome">Nome</label>
                             <Field name="nome" type="text" className="nome"/>
@@ -141,6 +149,7 @@ const Cadastro = () => {
                     </Form>
                 )}
             />
+            
         )
     
 }

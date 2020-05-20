@@ -1,6 +1,9 @@
+//FAZER NOTIFICAÇÕES FUNCIONAR NA VARIÁVEL NEW REQ
+
 import React from 'react';
 import clsx from 'clsx';
 import Me from '../Header/menu';
+import {useSelector, useDispatch} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -125,6 +128,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
+  const new_req = useSelector(state => state.req.new_req);
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -133,6 +138,11 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //Quando o usuario clica para ver os novos requerentes, 
+  //é limpo o numero de notificaçoes
+  function handleNotif(){
+    dispatch({type:'NOTIFY', new_req:{qtd:0}})
+  }
 
   return (
     <div className={classes.root}>
@@ -151,8 +161,9 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             <img src={logo} alt="akicredit" width="80vw"></img>
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+          {/* aqui atualkizammos quando surgem novos requerentes pelo new_req*/}
+          <IconButton onClick={handleNotif} color="inherit">
+            <Badge badgeContent="{new_req}" color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>

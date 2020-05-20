@@ -37,13 +37,21 @@ const ButtonAppBar = () => {
   const user_data= useSelector (state=> state.usuario.user)
   
   
+  
    function verify(u){
     if(u === null ||u === "undefined" ){
       return <Link to="/login"><Perfil /></Link>
     
      }else{
-     return <><Typography variant="h6">Olá, {user_data.nome}</Typography><Avatar style={{marginRight:'5px'}}>U</Avatar><Menu/></>
-     }
+       if(user_data!== " "||user_data!==null){
+        const letra = user_data.nome.split("");
+        return <><Typography variant="h6">Olá, {user_data.nome}</Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
+    
+       }else{
+        return <Link to="/login"><Perfil /></Link>
+
+       }
+    }
    }
 
     
@@ -56,7 +64,7 @@ const ButtonAppBar = () => {
         <Grid container xs>
         <Grid item xs={4}>
 
-          <a href="/"><img src={Logo} alt="aaa" width="150vw"></img></a>
+          <a href="/"><img src={Logo} alt="aaa" width="120vw"></img></a>
           </Grid>
           <Grid item align="right" xs={8} >
           <IconButton edge="end" color="#00acba">

@@ -1,8 +1,9 @@
 import React,{useState} from 'react';
 import Header from '../Header/index';
+import api from '../../services/api';
 import './styles.css';
-import Avatar from '@material-ui/core/Avatar';
-import  Dialog from '../Dialog/index';
+import {Avatar, Container} from '@material-ui/core';
+import  Dialog from '../loan_dialog/index';
 import {makeStyles} from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,18 +19,34 @@ const useStyles = makeStyles({
    
     inline: {
         display: 'inline',
+    },
+    container:{
+        width:'100%',
+        display:'flex',
+        padding:'30px',
+        justifyContent:'center',
+        alignItems:'center'
     }
 })
 const Requerentes = (props) =>{
     const classes = useStyles();
     const requerentes = useSelector(state=>  state.req.req_prox);
-      
-       
+    const [total, setTotal] = useState({});
+
+
+    try{
+
+    }catch(error){
+
+    }    
+    // useEffect(()=>{
+        
+    // },[])   
     return(
         <>
             <div className="requisicoes">
             <Header className="header" />    
-        
+                        <Container className={classes.container}>
                         <ul>
                             {requerentes.map(requerente => (
                                 
@@ -54,7 +71,8 @@ const Requerentes = (props) =>{
                                 </li>
 
                             ))}}
-                        </ul>      
+                        </ul>
+                        </Container>      
             </div>
         </>
 

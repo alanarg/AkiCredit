@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import Usuario from './pages/User';
 import Login from './pages/Login';
 import History from './history';
+import  RequerenteInterface from './pages/requerente_interface/index';
 import Dash from  './pages/ESC/dashboard';
 import Req from './pages/requerentes/index';
 
@@ -36,6 +37,7 @@ const Routes = ()=>(
         <Switch>
             <Route path="/login"  component={Login}/>
             <Route exact path="/" component={Main}/>
+            <SecuredRoute path="/req_interface" component={RequerenteInterface}/>
             <SecuredRoute path="/usuario" component={Usuario}/>
             <SecuredRoute path="/esc" component={Dash}/>
             <SecuredRoute path="/requerentes" component={Req}/>

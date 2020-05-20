@@ -19,6 +19,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import log from '../Header/logotipo-AKi-azul.png';
 import Grid from '@material-ui/core/Grid';
+import Rodape from '../rodape/index';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Devices from  '@material-ui/icons/Grain';
@@ -320,7 +321,7 @@ export default function BottomAppBar() {
             </Grid>
             </Grid>
             
-          
+          <Rodape/>
       </div>
         
      

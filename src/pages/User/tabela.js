@@ -7,7 +7,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import './css.css';
+import MyData from './meus_dados';
+import MeusPlanos from './meus_planos';
+import Taxas from './minhas_taxas';
+import ReqAceitos from './req_aceitos';
+import Locais from './localizacoes';
 import {AccountCircle, AttachMoney, ShopTwo, SupervisedUserCircle, LocationCity} from '@material-ui/icons';
 
 function TabPanel(props) {
@@ -45,9 +49,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     width: '100%',
   },
-  tab:{
-    color:"#00acba",
-    borderInlineEndColor:"#00acba",
+  indicator:{
+    backgroundColor:'#00acba'
+
 
   }
 }));
@@ -71,14 +75,20 @@ export default function FullWidthTabs() {
         <Tabs
           value={value}
           onChange={handleChange}
-          className="tab"
+          classes={{
+            indicator: classes.indicator
+          }}
           variant="fullWidth"
           aria-label="full width tabs example"
+
         >
           {/* Meus dados */}
-          <Tab  icon={<AccountCircle className={classes.icon} />} {...a11yProps(0)}></Tab>
+          <Tab  icon={<AccountCircle className={classes.icon}  
+
+          />} {...a11yProps(0)}></Tab>
           {/* Minhas taxas */}
-          <Tab icon={<AttachMoney className={classes.icon} />} {...a11yProps(1)} />
+          <Tab icon={<AttachMoney className={classes.icon}           
+          />} {...a11yProps(1)} />
           {/* Meus planos */}
           <Tab icon={<ShopTwo className={classes.icon} />} {...a11yProps(2)} />
           {/* Requerentes Aceitos */}
@@ -94,19 +104,19 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <span>Meus dados</span>
+          <MyData/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <span>Minhas taxas</span>
+          <MeusPlanos/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <span>Meus Planos</span>
+          <Taxas/>
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-          <span>Requerentes aceitos</span>
+          <ReqAceitos/>
         </TabPanel>
         <TabPanel value={value} index={4} dir={theme.direction}>
-          <span>Cidades de atendimento</span>
+          <Locais/>
         </TabPanel>
       </SwipeableViews>
     </div>

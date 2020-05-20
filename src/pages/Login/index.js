@@ -132,18 +132,17 @@ function Login(){
                 // setUsua(resposta.data.user);
                 try{
                     const escverify =  await api.get('/esc', {headers:{'Authorization': resposta.data.user.uid}});
-                    if(escverify === "Esc does not exist!"){
-                      dispatch({type:'ESC_OBJECT', exists:'não'});
-                    }else{
-                      dispatch({type:'ESC_OBJECT', exists:'sim'});
-                    }
+                      dispatch({type:'ESC_OBJECT', esc:{esc_object:escverify}});
+                    
                 }catch(error){
-                  console.log(error);
+                  if(error.response.data === "Esc does not exist!"){
+                    dispatch({type:'ESC_OBJECT', esc:{exists:'não'}});
+                  }
                 }
                 
                 dispatch({type:'USER_DATA', user:resposta.data.user});
                 setLoading(false);
-                 history.push('/');
+                //  history.push('/');
 
 
               } 
