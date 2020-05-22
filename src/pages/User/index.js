@@ -37,6 +37,13 @@ const useStyles = makeStyles(theme => ({
        display:'none'
 
     },
+    paper2:{
+        width:'100%',
+        height:'150px',
+        marginTop:'15px'
+
+
+    },
     select:{
         width:'100%',
         backgroundColor:'#00acba',
@@ -66,13 +73,19 @@ const Usuario = ()=>{
     const dispath = useDispatch();
     const esc = useSelector(state => state.esc.esc);
 
-    function selecaoImagem(event) {
+    async function selecaoImagem(event) {
 
         // setImage(URL.createObjectURL(event.target.files[0]),);
         setImage(URL.createObjectURL(event.target.files[0]))
-      }
+
+        try{
+            // const api = api.patch('/')
+        }catch(error){
+
+        }
+    }
       //Verificar se o usuário é novo para começar com as primeiras configurações
-     function verifyNew(){
+    function verifyNew(){
         console.log(esc)
         if(esc.esc_object==null){
             return <Initial/>
@@ -87,14 +100,14 @@ const Usuario = ()=>{
             <Container  className={classes.container}>
                 <Grid container   spacing={1} >
                 <Grid item  xs={4}>
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper2}>
                    <img src={image} alt="esc logo" className={classes.logoesc}/> 
                 </Paper>
                 <label for="select"><LibraryAdd className={classes.select}/></label>
                 <input type="file" id="select" onChange={selecaoImagem} className={classes.btnimg}/>
                 </Grid>
                 <Grid item  xs={8}>
-                    <Paper className={classes.paper}></Paper>
+                    <Paper className={classes.paper2}></Paper>
                 </Grid>
                 <Grid item  xs={12}>
                     {/* completar com essas informações
@@ -110,7 +123,7 @@ const Usuario = ()=>{
                     "nomeResponsavel": "almanac",
                     "telefone": "",
                     "ultimoRecebimento": 1589611978696 */}
-                    <Tabela/>
+                    <Tabela style={{display:'block'}}/>
                 </Grid>
                 </Grid>
                 

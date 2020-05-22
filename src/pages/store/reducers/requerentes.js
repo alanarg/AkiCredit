@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     new_req:{},
-   req_prox: [{}],
+   req_prox: {},
    req_aceito:[]
 
 
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 
 export default function req(state = INITIAL_STATE, action){
     if(action.type === 'ADD_REQ'){
-        return{ ...state, req_prox:[...state.req_prox, action.requerente]};
+        return{ ...state, req_prox:[action.requerente]};
     }
     if(action.type ==='NOTIFY'){
         return{ ...state, new_req: action.notify};

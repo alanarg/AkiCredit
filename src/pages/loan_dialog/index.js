@@ -25,7 +25,7 @@ export default function ResponsiveDialog(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" style={{borderColor:'#00acba', color:'#00acba'}} onClick={handleClickOpen}>
         Saber mais
       </Button>
       <Dialog
@@ -34,7 +34,7 @@ export default function ResponsiveDialog(props) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="responsive-dialog-title">Use Google's location service?</DialogTitle>
         <DialogContent>
           <DialogContentText>
            {props.info.nome}
