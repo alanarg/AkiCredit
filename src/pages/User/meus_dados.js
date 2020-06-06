@@ -40,7 +40,7 @@ const MeusDados = ()=>{
                         </Typography>
                 </div>
                 <Grid container flexDirection="row"  >
-                    <Grid item xs={6} sm={4}>
+                    <Grid item xs={12} sm={6}>
                         <ul style={{listStyle:'none'}}>
                                 <li>
                                       <p>
@@ -53,7 +53,7 @@ const MeusDados = ()=>{
                                 </li>
                          </ul>
                      </Grid>
-                     <Grid item xs={6} sm={4}>
+                     <Grid item xs={12} sm={6}>
                         <ul style={{listStyle:'none'}}>
                                 <li>
                                     <p>

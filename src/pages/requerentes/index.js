@@ -15,7 +15,6 @@ import {Paper, Grid, List, ListItem, ListItemText, ListItemAvatar, Typography} f
 const useStyles = makeStyles({
     root:{
         width:'100%',
-        marginLeft:'2px'
     },
    
     inline: {
@@ -33,8 +32,7 @@ const useStyles = makeStyles({
     container:{
         width:'100%',
         display:'flex',
-        paddingLeft:'30px',
-        paddingRight:'30px',
+        paddingLeft:'35px',
         justifyContent:'center',
         alignItems:'center'
     }

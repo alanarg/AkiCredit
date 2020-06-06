@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import draw from './undraw_data_reports_706v.svg';
 import Header from '../Header/index';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -173,14 +174,17 @@ export default function BottomAppBar() {
         </Grid>
         <br></br>
         <br></br>
-        <Container maxWidth="md" flexDirestion="row" component="main" style={{marginBottom:"70px", marginTop:'20px',}}>
-        <Grid container spacing={5} justify="space-between" alignItems="center" style={{backgroundColor:'#E0F8F7'}}>
+        <div style={{height:'900px',backgroundImage:`url(${draw})`, backgroundSize:'1200px 1000px', backgroundRepeat:'no-repeat'}}>
+        <Container maxWidth="md" flexDirestion="row" component="main" style={{marginBottom:"70px", marginTop:'20px'}}>
+          
+        <Grid container spacing={5} justify="space-between" alignItems="center" >
         <Divider/>
-
-            <Grid item xs style={{backgroundColor:'#E0F8F7'}}>
+            <Grid item>
+            </Grid>
+            <Grid item xs >
               <Card > 
                 <CardHeader
-                  title="Encontre requerentes em sua cidade"
+                  title="Encontre requerentes "
                   subheader="Filtragens de perfis para sua ESC"
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
@@ -201,7 +205,7 @@ export default function BottomAppBar() {
               </Card>
              
             </Grid>
-            <Grid item  xs  style={{backgroundColor:'#E0F8F7'}}>
+            <Grid item  xs  >
               <Card > 
                 <CardHeader
                   title="Gerencie pagamentos e sócios"
@@ -225,7 +229,7 @@ export default function BottomAppBar() {
               </Card>
              
             </Grid>
-            <Grid item  xs  style={{backgroundColor:'#E0F8F7'}}>
+            <Grid item  xs  >
               <Card > 
                 <CardHeader
                   title="Acompanhe  rendimentos"
@@ -254,7 +258,7 @@ export default function BottomAppBar() {
                <Divider/>
         </Grid>
       </Container>
-
+      </div>
       <div style={{background:'#00ACBA'}}>
          <Grid container  
           direction="row"

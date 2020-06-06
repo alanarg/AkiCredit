@@ -5,6 +5,7 @@ import Header from '../Header/index';
 import Slider from '@material-ui/core/Slider';
 import Rodape from '../rodape/index';
 import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import Aceitos from '../req_dialog/aceitos';
 import Perfil from '../req_dialog/perfil';
@@ -71,12 +72,13 @@ export default function RequerenteInterface(){
     const [valor, setValor] = useState(0);
     const dispatch = useDispatch();
     const [age, setAge] = useState('');
+    const [mes, setMes] = useState(0);
     
 
     const PrettoSlider = withStyles({
         root: {
           color: '#00acba',
-          height: 8,
+          
         },
        
         thumb: {
@@ -105,7 +107,7 @@ export default function RequerenteInterface(){
       })(Slider);
       let time = null
       let tgtv =0
-
+//Simples debounce para o slider
     function handleChange(e, newValue){
       clearTimeout(time)
       time = setTimeout(()=>{
@@ -119,9 +121,8 @@ export default function RequerenteInterface(){
     return <>
             <div className={classes.root}>
             <Header/>
-
                 <Grid container 
-                alignItems="center"  style={{backgroundColor:'white', marginTop:'20px', height:'600px', padding:'5px'}} >
+                alignItems="center"  style={{backgroundColor:'white', marginTop:'20px', height:'600px', padding:'5px',paddingTop:'10px'}} >
                     <Grid item xs>
                        <Container style={{width:'100%'}}>
                         
@@ -140,14 +141,13 @@ export default function RequerenteInterface(){
                         <ul style={{listStyle:'none'}}>
                             <li>
                                 <div className={classes.caixa}>
-                                  <Face className={classes.icons}><Perfil/></Face>
-                                    <Typography variant="h6" className={classes.txt2}>Perfil</Typography>
+                                  <Perfil/><Typography variant="h6" className={classes.txt2}>Perfil</Typography>
                                 </div>
                             </li>
                             <li>
                             <div className={classes.caixa}>
-                              <FindInPage  className={classes.icons}></FindInPage>
-                            <Typography variant="h6" className={classes.txt2}>Requisições</Typography>
+                              <Requisicoes/>
+                            <Typography variant="h6" className={classes.txt2}>Boletos</Typography>
                                     
                                 </div>
                                 
@@ -155,7 +155,7 @@ export default function RequerenteInterface(){
                             <li>
                             <div className={classes.caixa}>
                               <Gavel  className={classes.icons}></Gavel>
-                            <Typography variant="h6" className={classes.txt2}>Aceitos</Typography>
+                            <Typography variant="h6" className={classes.txt2}>Contratos</Typography>
                                     
                                 </div>
                             </li>
@@ -163,42 +163,47 @@ export default function RequerenteInterface(){
                             
                         </Container>
                     </Grid>
-                    
-                </Grid>
-            </div>
-            <Typography variant="h12" className={classes.txt}>Selecione o tempo a pagar e descreva sua requisição minimamente(maiores chances)</Typography>
 
-             <div className={classes.seletores}>
+                    <Grid item xs={12}>
+                      <Grid container justify="space-around" style={{marginTop:'10px'}}>
+                    <Typography variant="h12" className={classes.txt}>Selecione o tempo a pagar e descreva sua requisição minimamente(maiores chances)</Typography>
+                     
+                      
+                      <Grid item xs>                      
+                      <Typography variant="h6" className={classes.txt}>Meses:</Typography>
 
-                            <FormControl variant="outlined" className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={age}
-                                onChange={handleChange}
-                                label="Tempo a pagar"
-                              >
-                                <MenuItem value="">
-                                  <em>Tempo à pagar</em>
-                                </MenuItem>
-                                <MenuItem value={6}>6</MenuItem>
-                                <MenuItem value={12}>12</MenuItem>
-                                <MenuItem value={24}>24</MenuItem>
-                                <MenuItem value={36}>36</MenuItem>
+                      </Grid>
+                      <Grid item xs>
+                      <Typography variant="h4" className={classes.txt}>{mes}</Typography>
 
-                              </Select>
-                            </FormControl>
-                           
+                      </Grid>
+                      <Grid item xs>                      
+                      <button  onClick={()=>{ if(mes!==0){setMes(mes-1)};}} style={{ width:'50px', height:'50px',marginRight:'5px', backgroundColor:'#00acba', borderRadius:'10px'}}><h4 style={{color:'white', fontFamily:'Roboto'}}>-</h4></button> 
+                      <button  onClick={()=>{ if(mes<=35){setMes(mes+1)};}} style={{ width:'50px', height:'50px', backgroundColor:'#00acba', borderRadius:'10px'}}><h4 style={{color:'white', fontFamily:'Roboto'}}>+</h4></button> 
+
+                      </Grid>
+
+                      
                             <TextField
                               id="outlined-multiline-static"
                               label="Descrição"
                               multiLine={true} 
                               maxLength="4"   
                               variant="outlined"
+                              height="100px"
                             />
-                            <button  style={{ width:'50vw', height:'50px', backgroundColor:'#00acba', borderRadius:'10px'}}><h2 style={{color:'white', fontFamily:'Roboto'}}>Enviar</h2></button> 
-                            </div>
+                            <button  style={{ width:'50vw', height:'50px', backgroundColor:'#00acba', borderRadius:'10px'}}><h2 style={{color:'white', fontFamily:'Roboto'}}>Requisitar</h2></button> 
+
+                    </Grid>
+                    </Grid>
+
+                    
+                </Grid>
+            </div>
+
+             
+
+                          
             <div className={classes.Rodape}>
             <Rodape style={{marginTop:'10vh', display:'flex', align:'bottom'}}/>
             </div>

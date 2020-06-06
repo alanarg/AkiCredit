@@ -16,4 +16,5 @@ input, button, textarea{
 }
 button{
 	cursor: pointer;
+	border-color: #bcc8c8e3;
 }

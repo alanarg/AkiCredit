@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { LibraryAdd} from '@material-ui/icons';
 import Tabela from './tabela';
+import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
 import Initial from './initial_conf';
 import { Container, Typography, Paper, Avatar, Grid} from '@material-ui/core';
 
@@ -59,6 +60,13 @@ const useStyles = makeStyles(theme => ({
         width:'100%',
         borderRadius:'15px'
     },
+    up:{
+        color:'green'
+    },
+    down:{
+        color:'red'
+
+    },
     tabela:{
 
     }
@@ -106,8 +114,26 @@ const Usuario = ()=>{
                 <label for="select"><LibraryAdd className={classes.select}/></label>
                 <input type="file" id="select" onChange={selecaoImagem} className={classes.btnimg}/>
                 </Grid>
-                <Grid item  xs={8}>
-                    <Paper className={classes.paper2}></Paper>
+                <Grid item  xs={8} >
+
+                    <Paper className={classes.paper2}>
+                        <Grid container>
+                            <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px'}}>
+                                <h1 style={{ color:'#00acba'}}>R$45000,00</h1>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Grid container>
+                                    <Grid item xs style={{paddingTop:'10px'}}>
+                                        <h1 style={{color:'green',marginBottom:'40px'}}><ArrowUpward className={classes.up}/>3000</h1>
+                                    </Grid>
+                                    <Grid item xs style={{paddingTop:'10px'}}>
+                                        <h1 style={{color:'red'}}><ArrowDownward className={classes.down}/>8888</h1>
+                                    </Grid>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </Paper>
                 </Grid>
                 <Grid item  xs={12}>
                     {/* completar com essas informações

@@ -6,8 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from './Title';
-
+import {Grid} from '@material-ui/core';
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
@@ -35,15 +34,31 @@ export default function Orders() {
   const classes = useStyles();
   return (
     <React.Fragment>
-        <h2 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Trâmites</h2>
+        <Grid container>
+            <Grid item xs>
+            <h2 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Parcela:R$00,00</h2>
+
+            </Grid>
+            <Grid item xs>
+            <h4 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Taxa:R$00,00</h4>
+        <h4 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Meses:36</h4>        
+            </Grid>
+            <Grid item xs>
+            <button style={{backgroundColor:'#00acba', width:'70px', color:'white', borderRadius:'15px'}}>Gerar boleto</button>
+
+            </Grid>
+        </Grid>
+        
+
+        
+        
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Data</TableCell>
+            <TableCell>Nome do provedor</TableCell>
+
+            <TableCell align="right">Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,18 +66,12 @@ export default function Orders() {
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
               <TableCell align="right">{row.amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
+
     </React.Fragment>
   );
 }

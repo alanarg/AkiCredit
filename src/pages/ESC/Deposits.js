@@ -12,13 +12,17 @@ const useStyles = makeStyles({
   depositContext: {
     flex: 1,
   },
+  text:{
+    color:'#00acba',
+    fontFamily:'Roboto, sans-serif'
+  }
 });
 
 export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <h2 className={classes.text}>Depósitos recentes</h2>
       <Typography component="p" variant="h4">
         $3,024.00
       </Typography>
