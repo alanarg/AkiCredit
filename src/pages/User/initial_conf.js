@@ -38,12 +38,8 @@ export default function Initial(){
     
     async function handlePronto(){
         
-        setTimeout(()=>{
-          alert("TIMEOUT DO LOAD")
-          setLoad(true);
-        }, 1000)
+      setLoad(false);
 
-        
         const values = {
             cpf:user_data.cpf.toString(),
             nomeResponsavel:user_data.nome,
@@ -58,11 +54,10 @@ export default function Initial(){
             logo:" "
         
         };
-        dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
 
         try{
           const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${values.cep}/json/unicode/`);
-          setOpen(false);
+          dispath({type:'ESC_LOC', esc:{esc_loc:re}});
           console.log(re);
         }catch(error){
           setOpenErro(true);
@@ -72,7 +67,8 @@ export default function Initial(){
         try{
           await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
-          setOpen(false);
+          dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
+
 
         }catch(error){
           console.log(error.response.data);
@@ -84,7 +80,7 @@ export default function Initial(){
     }
     return <>   
         <div>
-          <Dialog open={open} onClose="" ia-labelledby="form-dialog-title">
+          <Dialog open={open} onClose="" ia-labelledby="form-dialog-title" style={{borderRadius:'15px'}}>
         <DialogTitle id="form-dialog-title">Seja bem vindo à plataforma Aki credit</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -93,6 +89,7 @@ export default function Initial(){
           <TextField
             autoFocus
             margin="dense"
+            required
             id="name"
             label="Nome da ESC"
             type="text"
@@ -101,6 +98,7 @@ export default function Initial(){
           />
             <TextField
             autoFocus
+            required
             margin="dense"
             id="name"
             label="CEP"
@@ -113,6 +111,7 @@ export default function Initial(){
             margin="dense"
             id="name"
             label="Telefone"
+            required
             type="number"
             onBlur={e=> e.preventDefault(setTelefone(e.target.value)) }
             fullWidth
@@ -124,6 +123,7 @@ export default function Initial(){
             placeholder="R$00,00"
             label="Montante"
             type="number"
+            required
             onBlur={e=> e.preventDefault(setMontante(e.target.value)) }
             fullWidth
           />  
@@ -131,6 +131,7 @@ export default function Initial(){
           autoFocus
           margin="dense"
           id="name"
+          required
           placeholder="Cidade1, cidade2, cidade3..."
           label="Cidades limítrefes"
           type="text"
@@ -144,6 +145,7 @@ export default function Initial(){
           placeholder="Autmóveis, imóveis, planos..."
           label="Linhas de financiamento"
           type="text"
+          required
           onBlur={e=> e.preventDefault(setPlanos(e.target.value)) }
           fullWidth
         />

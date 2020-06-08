@@ -124,8 +124,8 @@ function Login(){
               setLoading(true);
 
              
-              const resposta = await api.post('/signIn',values,  {headers: {'Content-Type': 'application/json'}} );
-
+              const resposta = await api.post('/signIn',values, {headers: {'Content-Type': 'application/json'}} );
+              console.log(resposta);
               if(resposta.data.success==="Signed in successfully"){
                 sucessoMessage();
                 localStorage.setItem("U_ID", resposta.data.user.uid);
@@ -135,9 +135,8 @@ function Login(){
                       dispatch({type:'ESC_OBJECT', esc:{esc_object:escverify}});
                     
                 }catch(error){
-                  if(error.response.data === "Esc does not exist!"){
-                    dispatch({type:'ESC_OBJECT', esc:{exists:'não'}});
-                  }
+                    dispatch({type:'ESC_EXIST', esc:{exists:'não'}});
+                  
                 }
                 
                 dispatch({type:'USER_DATA', user:resposta.data.user});
@@ -152,6 +151,7 @@ function Login(){
             }catch(error){
               setLoading(false);
               const e = error.response.data.error;
+              console.log(e);
               if(e === "There is no user record corresponding to this identifier. The user may have been deleted."){
                 setErro("Não existe usuário com o respectivo email!");
                 erroMessage();

@@ -21,7 +21,7 @@ import { validate as validateCPF} from 'gerador-validador-cpf';
 const Cadastro = () => {
     const [cpfv,setCpf] = useState('');
     const [cnpjv,setCnpj] = useState('');
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(0);
     const [loading, setLoading] = useState(false);
     
     
@@ -39,7 +39,8 @@ const Cadastro = () => {
                     password: '',
                     ckey:'',                    
                     cpf:'',
-                    cnpj:''
+                    cnpj:'',
+                    escStatus:check
                     
                 }}
                 validationSchema={Yup.object().shape({
@@ -63,20 +64,17 @@ const Cadastro = () => {
 
                 })}
                 onSubmit ={ async fields => {
-                    alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
                    const data = JSON.stringify(fields, null, 4);
 
-                   console.log(data);
                  try{
                     setLoading(true);
                    const resposta = await api.post('/signUp', data, {headers: {'Content-Type': 'application/json'}});
-                        console.log(resposta.data);
-                        if(resposta.data.success === 'User successfully signed up'){
-                            alert("Cadastrado");
+                        if(resposta.data.success === 'Usuário cadastrado!'){
                             setLoading(false);
-                            history.push("/login");
+                            history.push('/');
 
                         }
+                        setLoading(false);
                     
                  }catch(error){
                     setLoading(false);
@@ -88,7 +86,7 @@ const Cadastro = () => {
                     ({ values,errors, status, touched,props }) => (
                     <Form>
 
-                        <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(true))} />} label="Sou um empresa simples de crédito"/>
+                        <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(1))} />} label="Sou um empresa simples de crédito"/>
                         { check?<p style={{color:'#00acba'}}>Sua informações serão verificadas</p>:null}
                         <div className="input-row">
                             <label className="labelc" htmlFor="nome">Nome</label>

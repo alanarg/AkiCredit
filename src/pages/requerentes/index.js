@@ -43,6 +43,7 @@ const Requerentes = (props) =>{
     const requerentes = useSelector(state=> state.req.req_prox[0]);
     const dispatch = useDispatch();
     const [load, setLoad] = useState(false);
+    const [req, setReq] = useState("");
     const [total, setTotal] = useState({});
 
     
@@ -51,11 +52,12 @@ const Requerentes = (props) =>{
 
         try{
 
-            const reqs = await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}});
-            dispatch({type:'ADD_REQ', requerente:reqs.data});
+            await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=> 
+            dispatch({type:'ADD_REQ', requerente:res.data})
+            );
+            verifyReqs();
 
 
-            return setLoad(false);
             
             
 
@@ -66,12 +68,22 @@ const Requerentes = (props) =>{
             setLoad(false);
 
 
+        }finally{
+            return setLoad(false);
+
         }
     }    
     // useEffect(()=>{
-    const rqs = Object.values(requerentes)
-    console.log(rqs);
+        function verifyReqs(){
+             if(requerentes){
+                setReq(Object.values(requerentes));
+                return  console.log(requerentes);
+                
+            
+            }
+        }
         
+            
     // },[])   
     return(
         <>
@@ -84,7 +96,7 @@ const Requerentes = (props) =>{
                         <Container className={classes.container}>
 
                         <ul style={{listStyle:'none'}}>
-                            {rqs.map(requerente => (
+                            {req?req.map(requerente => (
                                 
                                 
 
@@ -101,7 +113,7 @@ const Requerentes = (props) =>{
                                  
                                 </li>
 
-                            ))
+                            )):null
                             }
                         </ul>
                         </Container>      

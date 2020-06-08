@@ -34,18 +34,21 @@ const useStyles = makeStyles(theme => ({
 
 const ButtonAppBar = () => {
   const [anchor, setAnchor] = useState(null);
-  const user_data= useSelector (state=> state.usuario.user)
+  const [img,setImg] = useState("");
+  const user= useSelector (state=> state.usuario.user);
+  const logo= useSelector (state=> state.usuario.user_logo);
+
   
   
-  
-   function verify(u){
+   function verify(u, logo){
+     
     if(u === null ||u === "undefined" ){
       return <Link to="/login"><Perfil /></Link>
     
      }else{
-       if(user_data!== " "||user_data!==null){
-        const letra = user_data.nome.split("");
-        return <><Typography variant="h6">Olá, {user_data.nome}</Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
+       if(user.user_data){
+        const letra = user.user_data.nome.split("");
+       return <><Typography variant="h6">Olá,{user.user_data.nome} </Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
     
        }else{
         return <Link to="/login"><Perfil /></Link>
@@ -70,7 +73,7 @@ const ButtonAppBar = () => {
           <IconButton edge="end" color="#00acba">
             {
               
-               verify(localStorage.getItem('U_ID'))
+               verify(localStorage.getItem('U_ID'), logo)
             
             }
             

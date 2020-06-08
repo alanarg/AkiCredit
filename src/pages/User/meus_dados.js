@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const MeusDados = ()=>{
     const classes = useStyles();
-    const user = useSelector(state=> state.usuario.user);
+    const user = useSelector(state=> state.usuario.user.user_data);
     const dispatch = useDispatch();
 
     return <>

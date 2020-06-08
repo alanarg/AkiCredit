@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const MeusPlanos = ()=>{
     const classes = useStyles();
-    const esc = useSelector(state=> state.esc.esc.esc_object.data);
+    const esc = useSelector(state=> state.esc.esc.esc_object);
     const dispatch = useDispatch();
     console.log(esc)
 

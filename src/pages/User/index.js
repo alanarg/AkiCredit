@@ -57,7 +57,8 @@ const useStyles = makeStyles(theme => ({
 
     },
     logoesc:{
-        width:'100%',
+        width:'100px',
+        height:'100px',
         borderRadius:'15px'
     },
     up:{
@@ -76,58 +77,88 @@ const useStyles = makeStyles(theme => ({
 
 const Usuario = ()=>{
     const classes = useStyles();
-    const [image,setImage] = useState('');
+    
+    const [file,setFile] = useState([0]);
+    const [imag2, setImag2] = useState([0]);
     const [load, setLoad] = useState(true);
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const esc = useSelector(state => state.esc.esc);
+    const user = useSelector(state => state.usuario.user_data);
+    const i = localStorage.getItem('LOGO');
 
-    async function selecaoImagem(event) {
+   
 
-        // setImage(URL.createObjectURL(event.target.files[0]),);
-        setImage(URL.createObjectURL(event.target.files[0]))
+    function selecaoImagem(event) {
+        
 
-        try{
-            // const api = api.patch('/')
-        }catch(error){
 
-        }
+        setFile({
+            file: URL.createObjectURL(event.target.files[0])
+      
+          });
+        
     }
+
       //Verificar se o usuário é novo para começar com as primeiras configurações
     function verifyNew(){
-        console.log(esc)
-        if(esc.esc_object==null){
+        // if(user.user_logo){
+        //     return setImage(URL.createObjectURL(user.user_logo.File));
+        // }     
+        if(esc.exists==="não"){
             return <Initial/>
         }
 
+    }
+    function srcImg(){
+        return 
+    }
+    function updateLogo(){
+        // try{
+        //     const fd = new FormData();
+        //     fd.append('logo',imag2, imag2.name);
+        //    await api.patch('/esc',fd,{headers:{'Authorization': localStorage.getItem('U_ID')}} ).then(res=> console.log(res.data));
+        // return  console.log(user);
 
+        console.log(file);
+
+            
+        // }catch(error){
+        //     return console.log(error.response);
+        // }
     }
     return <>
             <div className={classes.root}>
-
+            
             <Header/>
             <Container  className={classes.container}>
                 <Grid container   spacing={1} >
                 <Grid item  xs={4}>
                 <Paper className={classes.paper2}>
-                   <img src={image} alt="esc logo" className={classes.logoesc}/> 
+
+        {/* {setImag2(URL.createObjectURL(user.user_logo.logo))} */}
+                    
+                   <img src={file.File} alt="esc logo" width="200px" height="100px"/> 
+                    
                 </Paper>
                 <label for="select"><LibraryAdd className={classes.select}/></label>
                 <input type="file" id="select" onChange={selecaoImagem} className={classes.btnimg}/>
+                {/* //Botão para upload */}
+                {/* <button onClick={updateLogo} style={{width:'50px', height:'100px', backgroundColor:'#00acba'}}/> */}
                 </Grid>
                 <Grid item  xs={8} >
 
                     <Paper className={classes.paper2}>
                         <Grid container>
                             <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px'}}>
-                                <h1 style={{ color:'#00acba'}}>R$45000,00</h1>
+                                <h1 style={{ color:'#00acba'}}>{esc.esc_object.limiteDeCredito}</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>
                                     <Grid item xs style={{paddingTop:'10px'}}>
-                                        <h1 style={{color:'green',marginBottom:'40px'}}><ArrowUpward className={classes.up}/>3000</h1>
+                                        <h1 style={{color:'green',marginBottom:'40px'}}><ArrowUpward className={classes.up}/>0</h1>
                                     </Grid>
                                     <Grid item xs style={{paddingTop:'10px'}}>
-                                        <h1 style={{color:'red'}}><ArrowDownward className={classes.down}/>8888</h1>
+                                        <h1 style={{color:'red'}}><ArrowDownward className={classes.down}/>0</h1>
                                     </Grid>
                                 </Grid>
 
@@ -154,7 +185,7 @@ const Usuario = ()=>{
                 </Grid>
                 
             </Container>
-            {verifyNew()}
+            {verifyNew}
 
             </div>
             

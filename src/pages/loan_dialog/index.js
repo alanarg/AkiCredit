@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export default function ResponsiveDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [res, setRes] = React.useState('');
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -26,8 +27,7 @@ export default function ResponsiveDialog(props) {
      try{
       //Aqui estou usando a authorização com o id do requerente que quero buscar, 
       //possível falha de segurança 
-     const res =await api.get('/user', {headers:{'Authorization':client_id}});
-     console.log(res);
+     await api.get('/user', {headers:{'Authorization':client_id}}).then(e=> setRes(e.data));
      setOpen(true);
      }catch(error){
      console.log(error.response);
@@ -62,28 +62,28 @@ export default function ResponsiveDialog(props) {
         <DialogTitle id="responsive-dialog-title" style={{color:'green', fontSize:'20px'}}>R${props.info.valor},00</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Nome:
+            Nome:{res.nome}
           </DialogContentText>
           <DialogContentText>
-            CNPJ:
+            CNPJ:{res.cnpj}
           </DialogContentText>
           <DialogContentText>
-            Email:
+            Email:{res.email}
           </DialogContentText>
           <DialogContentText>
-            Telefone:
+            Telefone:{res.telefone}
           </DialogContentText>
           <DialogContentText>
-            Ramo Empresarial:
+            Tempo à pagar:{props.info.tempo}
           </DialogContentText>
           <DialogContentText>
-            Descrição:
+            Valor:{props.info.valor}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus style={{backgroundColor:'green'}} onClick={handleAceitar} >
             <CheckRounded/>
-            Aceitar
+            Colocar em análise
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
             fechar

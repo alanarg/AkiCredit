@@ -1,5 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Backdrop from '@material-ui/core/Backdrop';
+import api from '../../services/api';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,8 +14,14 @@ import InboxIcon from '@material-ui/icons/PowerSettingsNew';
 import DraftsIcon from '@material-ui/icons/ViewQuilt';
 import SendIcon from '@material-ui/icons/Home';
 import Options from '@material-ui/icons/Apps';
+import {useDispatch} from 'react-redux';
 
-
+const StyledBack = withStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}))(Backdrop);
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -46,6 +55,8 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   let history = useHistory();
 
 
@@ -61,8 +72,34 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
 
+  async function handleHome(){
+    setOpen(true);
+
+      try{
+
+       await api.get('/esc',{headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=>dispatch({type:'ESC_OBJECT', esc:{esc_object:res.data}}));
+       try{
+       await api.get('/user',{headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=>dispatch({type:'USER_DATA', user:{user_data:res.data}}));
+       history.push('/usuario');
+
+        return setOpen(false);
+
+       }catch(error){
+        return setOpen(false);
+
+        return console.log(error.response);
+       }
+      }catch(error){
+        return setOpen(false);
+
+          return console.log(error.response);
+      }
+  }
+
   return (
+    
     <div>
+          
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -80,8 +117,10 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-
-        <StyledMenuItem onClick={e => history.push('/usuario')}>
+         <Backdrop open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+        <StyledMenuItem onClick={handleHome}>
           <ListItemIcon>
               <SendIcon fontSize="small" />
           </ListItemIcon>
@@ -100,6 +139,7 @@ export default function CustomizedMenus() {
           <ListItemText primary="Sair" />
         </StyledMenuItem>
       </StyledMenu>
+ 
     </div>
   );
 }
