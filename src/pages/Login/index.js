@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import {Formik} from "formik";
 import * as Yup from "yup";
 import Error from "./error";
+import md5 from 'md5';
 import {useDispatch} from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
 import { withRouter, Redirect } from "react-router-dom";
@@ -119,12 +120,12 @@ function Login(){
           initialValues={{email:"", password: ""}}
           validationSchema={loginSchema}
           onSubmit={async (values)=>{
-
+              var senha = md5(values.password);
             try{
               setLoading(true);
 
              
-              const resposta = await api.post('/signIn',values, {headers: {'Content-Type': 'application/json'}} );
+              const resposta = await api.post('/signIn',{email:values.email,password:senha} ,{headers: {'Content-Type': 'application/json'}} );
               console.log(resposta);
               if(resposta.data.success==="Signed in successfully"){
                 sucessoMessage();

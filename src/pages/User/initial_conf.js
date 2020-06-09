@@ -14,7 +14,7 @@ export default function Initial(){
   const [openSucc,setSucc] = useState(false);
     const [open, setOpen] = useState(true);
     const [nomeEsc, setNome] = useState("");
-    const user_data= useSelector (state=> state.usuario.user)
+    const user= useSelector (state=> state.usuario.user)
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
     const [montante, setMontante] = useState("");
@@ -37,15 +37,16 @@ export default function Initial(){
     }
     
     async function handlePronto(){
+      setOpen(true);
+      setLoad(true);
         
-      setLoad(false);
 
         const values = {
-            cpf:user_data.cpf.toString(),
-            nomeResponsavel:user_data.nome,
-            cnpj:user_data.cnpj.toString(),
+            cpf:user.cpf,
+            nomeResponsavel:user.nome,
+            cnpj:user.cnpj,
             nomeESC:nomeEsc,
-            email:user_data.email,
+            email:user.email,
             cep:cep,
             telefone:telefone,
             limiteDeCredito:montante,
@@ -59,7 +60,10 @@ export default function Initial(){
           const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${values.cep}/json/unicode/`);
           dispath({type:'ESC_LOC', esc:{esc_loc:re}});
           console.log(re);
+
         }catch(error){
+           setOpen(true);
+
           setOpenErro(true);
           console.log(error.response);
 
@@ -67,10 +71,14 @@ export default function Initial(){
         try{
           await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
+          setOpen(false);
+
           dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
 
 
         }catch(error){
+          setOpen(true);
+
           console.log(error.response.data);
           setOpenErro(true);
 
@@ -80,7 +88,7 @@ export default function Initial(){
     }
     return <>   
         <div>
-          <Dialog open={open} onClose="" ia-labelledby="form-dialog-title" style={{borderRadius:'15px'}}>
+          <Dialog open={open} ia-labelledby="form-dialog-title" style={{borderRadius:'15px'}}>
         <DialogTitle id="form-dialog-title">Seja bem vindo à plataforma Aki credit</DialogTitle>
         <DialogContent>
           <DialogContentText>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import {useSelector} from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -59,6 +60,8 @@ const useStyles = makeStyles((theme) => ({
 export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
+  const esc = useSelector(state => state.esc.esc);
+  const user = useSelector(state => state.usuario.user);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -104,13 +107,13 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <MyData/>
+          {user?<MyData/>:null}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <MeusPlanos/>
+          {esc?<MeusPlanos/>:null}
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <Taxas/>
+          {esc?<Taxas/>:null}
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
           <ReqAceitos/>

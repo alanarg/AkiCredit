@@ -5,13 +5,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import './css.css';
 import ReactDOM from 'react-dom';
 import api from '../../services/api';
+import md5 from 'md5';
 import Error from './error';
 import axios from "axios";
 import $ from 'jquery';
 import cnpj from 'cpf-cnpj-validator';
 import history from '../../history';
 import Typography from '@material-ui/core/Typography';
-import validCnpj from './validCnpj';
+import validCnpj from './validCnpj'; 
 import {Checkbox } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -23,12 +24,7 @@ const Cadastro = () => {
     const [cnpjv,setCnpj] = useState('');
     const [check, setCheck] = useState(0);
     const [loading, setLoading] = useState(false);
-    
-    
-
-
-    
-		
+	
         return (
             
             <Formik
@@ -36,11 +32,11 @@ const Cadastro = () => {
                     nome: '',
                     sobrenome: '',
                     email: '',
-                    password: '',
+                    password:'' ,
                     ckey:'',                    
                     cpf:'',
                     cnpj:'',
-                    escStatus:check
+                    logo:''
                     
                 }}
                 validationSchema={Yup.object().shape({
@@ -64,11 +60,24 @@ const Cadastro = () => {
 
                 })}
                 onSubmit ={ async fields => {
-                   const data = JSON.stringify(fields, null, 4);
+                   
+                   const data = {
+                    ckey: md5(fields.ckey),
+                    cnpj: fields.cnpj,
+                    cpf: fields.cpf,
+                    email: fields.email,
+                    logo: fields.logo,
+                    nome: fields.nome,
+                    password: md5(fields.password),
+                    sobrenome: fields.sobrenome
+                   };
+                   console.log(data);
+                //    var senha = md5(data.password);
+                //    var ckey = md5(data.ckey);
 
                  try{
                     setLoading(true);
-                   const resposta = await api.post('/signUp', data, {headers: {'Content-Type': 'application/json'}});
+                   const resposta = await api.post('/signUp',data,{headers: {'Content-Type': 'application/json'}});
                         if(resposta.data.success === 'Usuário cadastrado!'){
                             setLoading(false);
                             history.push('/');
@@ -86,8 +95,8 @@ const Cadastro = () => {
                     ({ values,errors, status, touched,props }) => (
                     <Form>
 
-                        <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(1))} />} label="Sou um empresa simples de crédito"/>
-                        { check?<p style={{color:'#00acba'}}>Sua informações serão verificadas</p>:null}
+                        {/* <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(1))} />} label="Sou um empresa simples de crédito"/>
+                        { check?<p style={{color:'#00acba'}}>Sua informações serão verificadas</p>:null} */}
                         <div className="input-row">
                             <label className="labelc" htmlFor="nome">Nome</label>
                             <Field name="nome" type="text" className="nome"/>

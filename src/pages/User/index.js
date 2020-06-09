@@ -83,7 +83,7 @@ const Usuario = ()=>{
     const [load, setLoad] = useState(true);
     const dispatch = useDispatch();
     const esc = useSelector(state => state.esc.esc);
-    const user = useSelector(state => state.usuario.user_data);
+    const user = useSelector(state => state.usuario.user);
     const i = localStorage.getItem('LOGO');
 
    
@@ -103,7 +103,8 @@ const Usuario = ()=>{
     function verifyNew(){
         // if(user.user_logo){
         //     return setImage(URL.createObjectURL(user.user_logo.File));
-        // }     
+        // }    
+        console.log(esc); 
         if(esc.exists==="não"){
             return <Initial/>
         }
@@ -150,7 +151,7 @@ const Usuario = ()=>{
                     <Paper className={classes.paper2}>
                         <Grid container>
                             <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px'}}>
-                                <h1 style={{ color:'#00acba'}}>{esc.esc_object.limiteDeCredito}</h1>
+                                <h1 style={{ color:'#00acba'}}>{esc.esc_object?esc.esc_object.limiteDeCredito:0}</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>
@@ -185,7 +186,7 @@ const Usuario = ()=>{
                 </Grid>
                 
             </Container>
-            {verifyNew}
+            {verifyNew()}
 
             </div>
             

@@ -40,20 +40,17 @@ const ButtonAppBar = () => {
 
   
   
-   function verify(u, logo){
+   function verify(){
      
-    if(u === null ||u === "undefined" ){
+    if(!localStorage.getItem('U_ID')){
       return <Link to="/login"><Perfil /></Link>
     
-     }else{
-       if(user.user_data){
-        const letra = user.user_data.nome.split("");
-       return <><Typography variant="h6">Olá,{user.user_data.nome} </Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
+    }else{
+       
+        const letra = user.nome.split("");
+       return <><Typography variant="h6">Olá,{user.nome} </Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
     
-       }else{
-        return <Link to="/login"><Perfil /></Link>
-
-       }
+      
     }
    }
 
@@ -73,7 +70,7 @@ const ButtonAppBar = () => {
           <IconButton edge="end" color="#00acba">
             {
               
-               verify(localStorage.getItem('U_ID'), logo)
+               verify()
             
             }
             

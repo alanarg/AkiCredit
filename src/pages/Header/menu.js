@@ -73,33 +73,18 @@ export default function CustomizedMenus() {
   };
 
   async function handleHome(){
-    setOpen(true);
+       setOpen(true);
 
-      try{
-
-       await api.get('/esc',{headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=>dispatch({type:'ESC_OBJECT', esc:{esc_object:res.data}}));
-       try{
-       await api.get('/user',{headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=>dispatch({type:'USER_DATA', user:{user_data:res.data}}));
+     
        history.push('/usuario');
 
-        return setOpen(false);
-
-       }catch(error){
-        return setOpen(false);
-
-        return console.log(error.response);
-       }
-      }catch(error){
-        return setOpen(false);
-
-          return console.log(error.response);
-      }
+       return setOpen(false);
   }
 
   return (
     
     <div>
-          
+
       <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -109,6 +94,7 @@ export default function CustomizedMenus() {
         onClick={handleClick}
       >
         <Options/>
+      
       </Button>
       <StyledMenu
         id="customized-menu"
@@ -117,7 +103,7 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-         <Backdrop open={open}>
+      <Backdrop open={open}>
         <CircularProgress color="inherit" />
       </Backdrop>
         <StyledMenuItem onClick={handleHome}>
