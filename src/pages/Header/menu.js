@@ -74,10 +74,7 @@ export default function CustomizedMenus() {
 
   async function handleHome(){
        setOpen(true);
-
-     
        history.push('/usuario');
-
        return setOpen(false);
   }
 
@@ -103,9 +100,7 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-      <Backdrop open={open}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+     
         <StyledMenuItem onClick={handleHome}>
           <ListItemIcon>
               <SendIcon fontSize="small" />

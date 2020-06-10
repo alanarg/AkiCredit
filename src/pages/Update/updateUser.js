@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import api from '../../services/api';
+import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -12,7 +13,7 @@ import {CircularProgress, TextField, Button,Dialog, DialogActions, DialogContent
 export default function Initial(){
   const [openErro,setOpenErro] = useState(false);
   const [openSucc,setSucc] = useState(false);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [nomeEsc, setNome] = useState("");
     const user= useSelector (state=> state.usuario.user)
     const [cep, setCep] = useState("");
@@ -35,7 +36,12 @@ export default function Initial(){
       return setSucc(true);
   
     }
-    
+    function handleClickOpen(){
+      return setOpen(true);
+    }    
+    function handleClose(){
+      return setOpen(false);
+    }
     async function handlePronto(){
       setOpen(true);
       setLoad(true);
@@ -88,6 +94,9 @@ export default function Initial(){
     }
     return <>   
         <div>
+        <Button onClick={handleClickOpen}>
+        <EditIcon />
+      </Button>
           <Dialog open={open} ia-labelledby="form-dialog-title" style={{borderRadius:'15px'}}>
         <DialogTitle id="form-dialog-title">Seja bem vindo à plataforma Aki credit</DialogTitle>
         <DialogContent>
@@ -161,6 +170,9 @@ export default function Initial(){
         <DialogActions>
           <Button onClick={handlePronto} color="#00acba">
             Pronto!
+          </Button>
+          <Button onClick={handleClose} color="#00acba">
+            Fechar
           </Button>
         </DialogActions>
         {load && <CircularProgress />}

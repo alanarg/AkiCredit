@@ -7,8 +7,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { LibraryAdd} from '@material-ui/icons';
 import Tabela from './tabela';
+import UpdateEsc from '../Update/updateEsc';
 import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
-import Initial from './initial_conf';
+import Initial from './initial_config';
 import { Container, Typography, Paper, Avatar, Grid} from '@material-ui/core';
 
 
@@ -76,8 +77,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const Usuario = ()=>{
-    const classes = useStyles();
-    
+    const classes = useStyles();    
     const [file,setFile] = useState([0]);
     const [imag2, setImag2] = useState([0]);
     const [load, setLoad] = useState(true);
@@ -89,14 +89,10 @@ const Usuario = ()=>{
    
 
     function selecaoImagem(event) {
-        
-
-
         setFile({
             file: URL.createObjectURL(event.target.files[0])
       
-          });
-        
+          });        
     }
 
       //Verificar se o usuário é novo para começar com as primeiras configurações
@@ -147,11 +143,12 @@ const Usuario = ()=>{
                 {/* <button onClick={updateLogo} style={{width:'50px', height:'100px', backgroundColor:'#00acba'}}/> */}
                 </Grid>
                 <Grid item  xs={8} >
+                <UpdateEsc/>
 
                     <Paper className={classes.paper2}>
                         <Grid container>
                             <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px'}}>
-                                <h1 style={{ color:'#00acba'}}>{esc.esc_object?esc.esc_object.limiteDeCredito:0}</h1>
+                                <h1 style={{ color:'#00acba'}}>{esc.esc?esc.esc.limiteDeCredito:0}</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>
