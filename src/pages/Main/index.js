@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import draw from './undraw_data_reports_706v.svg';
+import draw3 from './undraw_business_shop_qw5t.svg';
+import draw2 from './undraw_people_search_wctu.svg';
 import Header from '../Header/index';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -28,38 +30,6 @@ import { useHistory } from "react-router-dom";
 
 import './css.css';
 
-const tiers = [
-  {
-    title: 'Controle de requerentes',
-    description: ['Já se decidiu?', 'Use o botão +', 'Preencha o formulário'],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Propostas ',
-    subheader: 'imediatas',
-    price: '15',
-    description: [
-      'Se a provado seu hisótrico financeiro',
-      'propostas serão enviadas ao seu perfil',
-  
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enfim envie a documentação',
-    price: '30',
-    description: [
-      'Sistema automatizado',
-      'Atinja metas apenas usando o smartphone',
-     
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
-
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(2, 2, 0),
@@ -67,6 +37,10 @@ const useStyles = makeStyles(theme => ({
   },
   div:{
     backgroundColor:'#00ACBA',
+  },
+  arte:{
+    width:'300px',
+    height:'200px'
   },
   paper: {
     paddingBottom: 50,
@@ -174,10 +148,10 @@ export default function BottomAppBar() {
         </Grid>
         <br></br>
         <br></br>
-        <div style={{height:'900px',backgroundImage:`url(${draw})`, backgroundSize:'1200px 1000px', backgroundRepeat:'no-repeat'}}>
+        <div >
         <Container maxWidth="md" flexDirestion="row" component="main" style={{marginBottom:"70px", marginTop:'20px'}}>
           
-        <Grid container spacing={5} justify="space-between" alignItems="center" >
+        <Grid container  justify="space-between" alignItems="center" >
         <Divider/>
             <Grid item>
             </Grid>
@@ -192,7 +166,8 @@ export default function BottomAppBar() {
                 />
                 <CardContent root=".MuiCardContent-root">
                   <div >
-                      <Requ style={{width:'100%', height:'150px', color:'#00acba'}}></Requ>
+                      <img src={draw2} alt="aki.credit" className={classes.arte}/>
+
                    
                   </div>
                 
@@ -216,8 +191,8 @@ export default function BottomAppBar() {
                 />
                 <CardContent>
                   <div >
+                  <img src={draw} alt="aki.credit" className={classes.arte}/>
                       
-                  <Store style={{width:'100%', height:'150px', color:'#00acba'}}></Store>
                   </div>
                 
                 </CardContent>
@@ -239,8 +214,8 @@ export default function BottomAppBar() {
                   className={classes.cardHeader}
                 />
                 <CardContent>
-                  <div >
-                  <Rend style={{width:'100%', height:'150px', color:'#00acba'}}></Rend>
+                  <div align="center">
+                  <img src={draw3} alt="aki.credit" className={classes.arte}/>
 
                    
                   </div>
