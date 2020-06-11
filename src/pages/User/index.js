@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
     },
     container:{
         display:'flex',
-        flexDirection:'row',
+        flexDirection:'column',
         justifyContent:'flex-star',
         borderRadius:'15px',
         marginTop:'30px',
-        height:'100vh',
+        height:'100%',
         backgroundColor:'white'
 
     },
@@ -147,8 +147,8 @@ const Usuario = ()=>{
 
                     <Paper className={classes.paper2}>
                         <Grid container>
-                            <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px'}}>
-                                <h1 style={{ color:'#00acba'}}>{esc.esc?esc.esc.limiteDeCredito:0}</h1>
+                            <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px', paddingLeft:'20px'}}>
+                                <h1 style={{ color:'#00acba'}}>R${esc.esc?esc.esc.limiteDeCredito:0},00</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>

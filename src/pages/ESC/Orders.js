@@ -35,15 +35,15 @@ export default function Orders() {
   const classes = useStyles();
   return (
     <React.Fragment>
-        <h2 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Trâmites</h2>
+        <h2 style={{color:'#00acba', fontFamily:'Roboto, sans-serif'}}>Trâmites mais recentes</h2>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Data</TableCell>
+            <TableCell>Nome</TableCell>
+            <TableCell>Cidade</TableCell>
+            <TableCell>Número Boleto</TableCell>
+            <TableCell align="right">Parcela</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +60,7 @@ export default function Orders() {
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
+          Ver histórico de trâmites
         </Link>
       </div>
     </React.Fragment>

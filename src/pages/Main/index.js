@@ -50,6 +50,10 @@ const useStyles = makeStyles(theme => ({
      marginTop:10, 
      marginBottom:10,
   },
+  car:{
+    border: '1px solid #00acba',
+    margin:'20px'
+  },
   list: {
     marginBottom: theme.spacing(2),
   },
@@ -156,7 +160,7 @@ export default function BottomAppBar() {
             <Grid item>
             </Grid>
             <Grid item xs >
-              <Card > 
+              <Card className={classes.car}> 
                 <CardHeader
                   title="Encontre requerentes "
                   subheader="Filtragens de perfis para sua ESC"
@@ -173,15 +177,13 @@ export default function BottomAppBar() {
                 
                 </CardContent>
                 <CardActions>
-                  <Button onClick={reque} fullWidth variant="outlined"  style={{borderColor:'#00acba', color:"#00acba"}}>
-                  Pesquisar requisições
-                  </Button>
+                  {/* espaço para ações ouj botões */}
                 </CardActions>
               </Card>
              
             </Grid>
             <Grid item  xs  >
-              <Card > 
+              <Card className={classes.car}> 
                 <CardHeader
                   title="Gerencie pagamentos e sócios"
                   subheader="Emissão de contratos e boletos bancários"
@@ -197,15 +199,13 @@ export default function BottomAppBar() {
                 
                 </CardContent>
                 <CardActions>
-                  <Button onClick={usuario} fullWidth variant="outlined" style={{borderColor:'#00acba', color:"#00acba"}}>
-                    Administrar minha ESC
-                  </Button>
+                  {/* espaço para ações ouj botões */}
                 </CardActions>
               </Card>
              
             </Grid>
             <Grid item  xs  >
-              <Card > 
+              <Card className={classes.car}> 
                 <CardHeader
                   title="Acompanhe  rendimentos"
                   subheader="Mantenha contato com seus clientes e programe notificações"
@@ -222,9 +222,7 @@ export default function BottomAppBar() {
                 
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant="outlined" color="primary"   style={{borderColor:'#00acba', color:"#00acba"}}>
-                    botao
-                  </Button>
+                  {/* espaço para ações ouj botões */}
                 </CardActions>
               </Card>
             

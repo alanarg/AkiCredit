@@ -10,6 +10,7 @@ import Error from './error';
 import axios from "axios";
 import $ from 'jquery';
 import cnpj from 'cpf-cnpj-validator';
+import Switch from '@material-ui/core/Switch';
 import history from '../../history';
 import Typography from '@material-ui/core/Typography';
 import validCnpj from './validCnpj'; 
@@ -24,7 +25,11 @@ const Cadastro = () => {
     const [cnpjv,setCnpj] = useState('');
     const [check, setCheck] = useState(0);
     const [loading, setLoading] = useState(false);
-	
+	const [checked, setChecked] = React.useState(0);
+
+    const toggleChecked = () => {
+        checked==1?setChecked(0):setChecked(1);
+    };
         return (
             
             <Formik
@@ -37,6 +42,8 @@ const Cadastro = () => {
                     cpf:'',
                     cnpj:'',
                     logo:''
+                    
+                    
                     
                 }}
                 validationSchema={Yup.object().shape({
@@ -69,7 +76,8 @@ const Cadastro = () => {
                     logo: fields.logo,
                     nome: fields.nome,
                     password: md5(fields.password),
-                    sobrenome: fields.sobrenome
+                    sobrenome: fields.sobrenome,
+                    escStatus:checked
                    };
                    console.log(data);
                 //    var senha = md5(data.password);
@@ -94,9 +102,8 @@ const Cadastro = () => {
                 render={
                     ({ values,errors, status, touched,props }) => (
                     <Form>
-
-                        {/* <FormControlLabel control={<Checkbox color="primary" checked={check} onChange={e=> e.preventDefault(setCheck(1))} />} label="Sou um empresa simples de crédito"/>
-                        { check?<p style={{color:'#00acba'}}>Sua informações serão verificadas</p>:null} */}
+                        <Switch checked={checked} onChange={toggleChecked} style={{color:'#00acba'}}/>Sou um Empresa Simples de Crédito
+                         {checked?<p style={{color:'#00acba'}}>Suas informações serão verificadas</p>:null} 
                         <div className="input-row">
                             <label className="labelc" htmlFor="nome">Nome</label>
                             <Field name="nome" type="text" className="nome"/>

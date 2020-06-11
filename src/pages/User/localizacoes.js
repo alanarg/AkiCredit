@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const Locais = ()=>{
     const classes = useStyles();
-    const user = useSelector(state=> state.usuario.user);
+    const esc = useSelector(state=> state.esc.esc.esc_loc.data);
     const dispatch = useDispatch();
 
     return <>
@@ -36,7 +36,7 @@ const Locais = ()=>{
             <Paper className={classes.paper} elevation={2}>
                 <div align="center">
                         <Typography variant="h6">
-                            Meus dados
+                            Locais
                         </Typography>
                 </div>
                 <Grid container flexDirection="row"  >
@@ -44,27 +44,18 @@ const Locais = ()=>{
                         <ul style={{listStyle:'none'}}>
                                 <li>
                                       <p>
-                                          <b>Nome:</b>{user.nome+" "+user.sobrenome}
+                                          <b>Localidade:</b>{esc?esc.localidade:null}
                                           <br></br>
-                                          <b>CPF:</b>{user.cpf}
+                                          <b>Bairro:</b>{esc?esc.bairro:null}
                                           <br></br>
-                                          <b>CNPJ:</b>{user.cnpj}
+                                          <b>Estado:</b>{esc?esc.uf:null}
                                       </p>  
                                 </li>
                          </ul>
                      </Grid>
                      <Grid item xs={6} sm={4}>
-                        <ul style={{listStyle:'none'}}>
-                                <li>
-                                    <p>
-                                          <b>EMAIL:</b>{user.email}
-                                          <br></br>
-                                          <b>CPF:</b>{user.cpf}
-                                          <br></br>
-                                          <b>CNPJ:</b>{user.cnpj}
-                                      </p>    
-                                </li>   
-                         </ul>
+                   {/* //Colocar api do google maps */}
+                         
                      </Grid>
                      
 

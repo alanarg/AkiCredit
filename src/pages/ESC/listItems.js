@@ -52,27 +52,3 @@ export const mainListItems = (
     </ListItem>
   </div>
 );
-
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset style={{color: '#ffff'}}>Atividades</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon style={{color: '#ffff'}} fontSize="large"/>
-      </ListItemIcon>
-      <ListItemText primary="Este mês" style={{color: '#ffff'}} />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon style={{color: '#ffff'}} fontSize="large"/>
-      </ListItemIcon>
-      <ListItemText primary="Último trimestre" style={{color: '#ffff'}}/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon style={{color: '#ffff'}} fontSize="large"/>
-      </ListItemIcon>
-      <ListItemText primary="último semestre" style={{color: '#ffff'}}/>
-    </ListItem>
-  </div>
-);

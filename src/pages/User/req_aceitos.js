@@ -1,13 +1,48 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {makeStyles, withStyles } from '@material-ui/core/styles';
+import {Avatar} from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 
+
+
+const emprestimos = [
+  { 
+    id:1,
+    nome:"Jeferson",
+    valor:"5.000",
+    data:"27/03/2020",
+    status:"Em análise",
+    meses:"36",
+    empresa:"Cosméticos"
+  },
+  {
+    id:2,
+    nome:"Jeferson",
+    valor:"5.000",
+    data:"27/03/2020",
+    status:"Em análise",
+    meses:"36",
+    empresa:"Cosméticos"
+  },
+  {
+    id:3,
+    nome:"Jeferson",
+    valor:"5.000",
+    data:"27/03/2020",
+    status:"Em análise",
+    meses:"36",
+    empresa:"Cosméticos"
+  }
+
+  
+];
 const ExpansionPanel = withStyles({
   root: {
-    border: '1px solid rgba(0, 0, 0, .125)',
+    border: '3px solid #00acba',
+    borderRadius:'15px',
     boxShadow: 'none',
     '&:not(:last-child)': {
       borderBottom: 0,
@@ -40,14 +75,26 @@ const ExpansionPanelSummary = withStyles({
   expanded: {},
 })(MuiExpansionPanelSummary);
 
+
+
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
   },
 }))(MuiExpansionPanelDetails);
 
+
+const useStyles = makeStyles(
+  {
+    root:{
+      width:'100%'
+    }
+  }
+)
+
 export default function CustomizedExpansionPanels() {
-  const [expanded, setExpanded] = React.useState('panel1');
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(1);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -55,42 +102,30 @@ export default function CustomizedExpansionPanels() {
 
   return (
     <div>
-      <ExpansionPanel square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Collapsible Group Item #3</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+      {emprestimos.map(emp=>(
+           <ExpansionPanel square expanded={expanded === emp.id} onChange={handleChange(emp.id)}>
+           <ExpansionPanelSummary aria-controls="panel1d-content" id={emp.id}>
+             <div align="left" className={classes.root}>
+               <Avatar style={{width:'50px', height:'50px'}}>a</Avatar>{emp.nome}
+             </div>
+             <div align="center" className={classes.root}>
+                <h2 style={{color:'#00acba'}}>Valor: R${emp.valor},00</h2>
+             </div>
+             <div align="right" className={classes.root}>
+            <Typography>{emp.data}</Typography>
+             </div>
+           </ExpansionPanelSummary>
+           <ExpansionPanelDetails>
+             <Typography>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+               sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
+               elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+             </Typography>
+           </ExpansionPanelDetails>
+         </ExpansionPanel>
+         
+      ))}
+     
     </div>
   );
 }

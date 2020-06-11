@@ -71,9 +71,8 @@ export default function Initial(){
         try{
           await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
-          setOpen(false);
-
           dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
+          setOpen(false);
 
 
         }catch(error){
@@ -89,7 +88,7 @@ export default function Initial(){
     return <>   
         <div>
           <Dialog open={open} ia-labelledby="form-dialog-title" style={{borderRadius:'15px'}}>
-        <DialogTitle id="form-dialog-title">Atualize seus dados de empresa simples de crédito!</DialogTitle>
+        <DialogTitle id="form-dialog-title">Bem vindo à plataforma de auxílio ESCs, para começar configure o ambiente</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Vamos começar!
@@ -159,11 +158,11 @@ export default function Initial(){
         />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handlePronto} color="#00acba">
-            Pronto!
+        {load && <CircularProgress />}
+          <Button onClick={handlePronto} style={{backgroundColor:"#00acba", color:"white"}}>
+            Atualizar
           </Button>
         </DialogActions>
-        {load && <CircularProgress />}
 
       </Dialog>
       <Snackbar open={openErro} autoHideDuration={6000} >

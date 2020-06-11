@@ -66,7 +66,6 @@ export default function Initial(){
 
         }catch(error){
           setOpen(false);
-           
 
           setOpenErro(true);
           console.log(error.response);
@@ -75,14 +74,15 @@ export default function Initial(){
         try{
           await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
+          dispath({type:'ESC_OBJECT', esc:{esc_object:values}});
           setOpen(false);
 
-          dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
 
 
         }catch(error){
-          setOpen(false);
+          setOpen(true);
 
+          setLoad(false);
 
           console.log(error.response.data);
           setOpenErro(true);
@@ -104,6 +104,7 @@ export default function Initial(){
           <TextField
             autoFocus
             margin="dense"
+            placeholder={esc.esc_object?esc.esc_object.nomeESC:null}
             required
             id="name"
             label="Nome da ESC"
@@ -114,6 +115,7 @@ export default function Initial(){
             <TextField
             autoFocus
             required
+            placeholder={esc.esc_object?esc.esc_object.cep:null}
             margin="dense"
             id="name"
             label="CEP"
@@ -125,6 +127,7 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
+            placeholder={esc.esc_object?esc.esc_object.telefone:null}
             label="Telefone"
             required
             type="number"
@@ -135,7 +138,7 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            placeholder="R$00,00"
+            placeholder={esc.esc_object?esc.esc_object.limiteDeCredito:null}
             label="Limite de Crédito"
             type="number"
             required
@@ -147,7 +150,7 @@ export default function Initial(){
           margin="dense"
           id="name"
           required
-          placeholder="Cidade1, cidade2, cidade3..."
+          placeholder={esc.esc_object?esc.esc_object.cidadesLimites:null}
           label="Cidades limítrefes"
           type="text"
           onBlur={e=> e.preventDefault(setCidades(e.target.value)) }
@@ -157,7 +160,7 @@ export default function Initial(){
           autoFocus
           margin="dense"
           id="name"
-          placeholder="Autmóveis, imóveis, planos..."
+          placeholder={esc.esc_object?esc.esc_object.linhaDeCredito:null}
           label="Linhas de financiamento"
           type="text"
           required
@@ -166,14 +169,14 @@ export default function Initial(){
         />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handlePronto} color="#00acba">
+        {load && <CircularProgress />}
+          <Button onClick={handlePronto} style={{backgroundColor:'#00acba', color:'white'}}>
             Atualizar!
           </Button>
           <Button onClick={handleClose} color="#00acba">
             Fechar
           </Button>
         </DialogActions>
-        {load && <CircularProgress />}
 
       </Dialog>
       <Snackbar open={openErro} autoHideDuration={6000} >
