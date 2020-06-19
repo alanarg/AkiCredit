@@ -126,14 +126,13 @@ function Login(){
 
              
               const resposta = await api.post('/signIn',{email:values.email,password:senha} ,{headers: {'Content-Type': 'application/json'}} );
-              console.log(resposta);
               if(resposta.data.success==="Signed in successfully"){
                 sucessoMessage();
                 localStorage.setItem("U_ID", resposta.data.user.uid);
                 // setUsua(resposta.data.user);
                 try{
                     const escverify =  await api.get('/esc', {headers:{'Authorization': resposta.data.user.uid}});
-                      dispatch({type:'ESC_OBJECT', esc:{esc_object:escverify}});
+                      dispatch({type:'ESC_OBJECT', esc:escverify.data});
                     
                 }catch(error){
                     dispatch({type:'ESC_EXIST', esc:{exists:'não'}});

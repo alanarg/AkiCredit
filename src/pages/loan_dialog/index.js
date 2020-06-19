@@ -58,30 +58,33 @@ export default function ResponsiveDialog(props) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <Avatar style={{width:'100px', height:'100px', margin:'20px'}}>A</Avatar>
-        <DialogTitle id="responsive-dialog-title" style={{color:'green', fontSize:'20px'}}>R${props.info.valor},00</DialogTitle>
+        <DialogTitle id="responsive-dialog-title" style={{color:'#00ACBA', fontSize:'80px'}}><h1>{res.nome}</h1></DialogTitle>
+        <DialogTitle id="responsive-dialog-title" style={{color:'#00ACBA', fontSize:'80px'}}><h1>R${props.info.valor},00</h1></DialogTitle>
+
         <DialogContent>
+          
           <DialogContentText>
-            Nome:{res.nome}
+          <strong>CNPJ:</strong>{res.cnpj}
           </DialogContentText>
           <DialogContentText>
-            CNPJ:{res.cnpj}
+          <strong>Email:</strong>{res.email}
+
           </DialogContentText>
           <DialogContentText>
-            Email:{res.email}
+          <strong>Telefone:</strong>{res.telefone}
+
           </DialogContentText>
           <DialogContentText>
-            Telefone:{res.telefone}
+          <strong>Tempo à pagar:</strong>{props.info.tempo}
+
           </DialogContentText>
           <DialogContentText>
-            Tempo à pagar:{props.info.tempo}
-          </DialogContentText>
-          <DialogContentText>
-            Valor:{props.info.valor}
+          <strong>Valor:</strong>{props.info.valor}
+
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus style={{backgroundColor:'green'}} onClick={handleAceitar} >
+          <Button autoFocus style={{backgroundColor:'#00acba'}} onClick={handleAceitar} >
             <CheckRounded/>
             Colocar em análise
           </Button>

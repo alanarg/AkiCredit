@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {AppBar} from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
+import {Button} from '@material-ui/core';
 import {Link} from 'react-router-dom'; 
 import Menu from './menu';
 import Typography from '@material-ui/core/Typography';
@@ -35,22 +36,36 @@ const useStyles = makeStyles(theme => ({
 const ButtonAppBar = () => {
   const [anchor, setAnchor] = useState(null);
   const [img,setImg] = useState("");
+  const history = useHistory();
   const user= useSelector (state=> state.usuario.user);
   const logo= useSelector (state=> state.usuario.user_logo);
 
-  
+  function SignOut(){
+    localStorage.removeItem('U_ID')
+    return history.push('/');
+  }  
   
    function verify(){
      
     if(!localStorage.getItem('U_ID')){
       return <Link to="/login"><Perfil /></Link>
     
-    }else{
+    }else if(user.escStatus == 1){
        
         const letra = user.nome.split("");
        return <><Typography variant="h6">Olá,{user.nome} </Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>
     
       
+    }else{
+      const letra = user.nome.split("");
+          return <><Typography variant="h6">Olá,{user.nome} </Typography>
+          <Link to="/req_interface" display="none">
+          <Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar>
+          </Link>
+          <Button onClick={SignOut}>Sair</Button>
+          </>
+    
+
     }
    }
 

@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Header from '../Header/index';
 import api from '../../services/api';
 import './styles.css';
 import {Cached} from '@material-ui/icons';
-import {Avatar, Container, CircularProgress, Button} from '@material-ui/core';
+import {Avatar, Container, CircularProgress, Button, Backdrop} from '@material-ui/core';
 import  Dialog from '../loan_dialog/index';
 import {makeStyles} from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -42,75 +42,51 @@ const Requerentes = (props) =>{
     const classes = useStyles();
     const requerentes = useSelector(state=> state.req.req_prox[0]);
     const dispatch = useDispatch();
-    const [load, setLoad] = useState(false);
+    const [open, setOpen] = useState(true);
     const [req, setReq] = useState("");
     const [total, setTotal] = useState({});
 
-    
-    async function searchReq(){
-        setLoad(true);
-
+    useEffect(() => {
+      reqs(); 
+    }, []);
+    async function reqs(){
         try{
+            const requerente =  await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}});
+            console.log(requerente);
+            dispatch({type:'ADD_REQ', requerente:requerente.data});
+            setReq(Object.values(requerentes));
+            setOpen(false);
+            // try{
 
-            await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}}).then(res=> 
-            dispatch({type:'ADD_REQ', requerente:res.data})
-            );
-            verifyReqs();
-
-
-            
-            
-
+            // }catch(error){
+            //     console.log(error.response); 
+            // }
 
         }catch(error){
-            setLoad(false);
             return console.log(error)
-            setLoad(false);
 
 
-        }finally{
-            return setLoad(false);
-
-        }
-    }    
-    // useEffect(()=>{
-        function verifyReqs(){
-             if(requerentes){
-                setReq(Object.values(requerentes));
-                return  console.log(requerentes);
-                
-            
-            }
-        }
+        };
+    }
         
             
-    // },[])   
     return(
         <>
             <div className="requisicoes">
             <Header className="header" />                
-                            <div className={classes.controllers}>
-                                <Button onClick={searchReq} style={{width:'80px',marginTop:'10px',height:'50px', backgroundColor:'#00acba', borderRadius:'5px', fontFamily:'Roboto'}}><Cached/></Button>
-                                {load && <CircularProgress style={{marginLeft:'50px'}}/>}
-                            </div>
                         <Container className={classes.container}>
-
+                            <Backdrop open={open}>
+                                <CircularProgress color="inheri"/>
+                            </Backdrop>
+                                
                         <ul style={{listStyle:'none'}}>
                             {req?req.map(requerente => (
-                                
-                                
-
                                 <li>
-                                        <Avatar style={{width:'100px', height:'100px'}}>A</Avatar>
-                                        <strong>{requerente.geolocation.city}</strong>
-
-                                         <p>                                            
-                                              <h4 style={{color:'green', marginTop:'5px', marginBottom:'5px'}}><i>R${requerente.valor},00</i></h4>                                      
-                                         </p>                                          
-
+                                    <p>                                            
+                                         <h1 style={{color:'#00acba', marginTop:'5px', marginBottom:'5px'}}>R${requerente.valor},00</h1>                                      
+                                         <strong>{requerente.geolocation.city}</strong>
+                                    </p>                                          
                                          <Dialog  info={requerente} /> 
-
-                                 
                                 </li>
 
                             )):null

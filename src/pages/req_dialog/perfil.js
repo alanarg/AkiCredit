@@ -87,6 +87,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function ResponsiveDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const user = useSelector(state=> state.usuario.user);
   const theme = useTheme();
   const classes = useStyles();
   const [image,setImage] = useState('');
@@ -113,7 +114,15 @@ export default function ResponsiveDialog(props) {
     setOpen(false);
   };
   
-
+  // cnpj6779445000106
+  // cpf7284911174
+  // email"teste10@gmail.com"
+  // emailVerifiedfalse
+  // escStatusnull
+  // logo""
+  // nome"teste"
+  // phoneNumbernull
+  // sobrenome
   return (
     <div>
       <Button onClick={handleClickOpen}>
@@ -130,31 +139,21 @@ export default function ResponsiveDialog(props) {
         <DialogContent>
 
           <HorizontalLabelPositionBelowStepper/>
-        <DialogTitle id="responsive-dialog-title">{"Minhas Informações"}</DialogTitle>
-        <Avatar alt="Remy Sharp" src={image} style={{width:'100px', height:'100px'}}/>
-
-          <label for="select"><LibraryAdd className={classes.select}/></label>
-          <input type="file" id="select" onChange={selecaoImagem} className={classes.btnimg}/>
+        <DialogTitle id="responsive-dialog-title">{user.nome+" "+user.sobrenome}</DialogTitle>
+          
           <DialogContentText>
-            Nome:
+          <strong>CNPJ:</strong>{user.cnpj}
           </DialogContentText>
           <DialogContentText>
-            CNPJ:
+          <strong>CPF:</strong>{user.cpf}
           </DialogContentText>
           <DialogContentText>
-            Email:
+          <strong>Email:</strong>{user.email}
           </DialogContentText>
           <DialogContentText>
-            Telefone:
+          <strong>Telefone:</strong>{user.phoneNumber}
           </DialogContentText>
-          <DialogContentText>
-            Ramo Empresarial:
-          </DialogContentText>
-          <DialogContentText>
-            Descrição:
-          </DialogContentText>
-          <DialogContentText>
-          </DialogContentText>
+          
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">

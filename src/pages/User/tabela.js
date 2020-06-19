@@ -92,12 +92,18 @@ export default function FullWidthTabs() {
           {/* Minhas taxas */}
           <Tab icon={<AttachMoney className={classes.icon}           
           />} {...a11yProps(1)} />
+          {/* NÃO IMPLEMENTADO */}
           {/* Meus planos */}
-          <Tab icon={<ShopTwo className={classes.icon} />} {...a11yProps(2)} />
+          {/* <Tab icon={<ShopTwo className={classes.icon} />} {...a11yProps(2)} /> */}
+
+
           {/* Requerentes Aceitos */}
-          <Tab icon={<SupervisedUserCircle className={classes.icon} />} {...a11yProps(3)} />
+          <Tab icon={<SupervisedUserCircle className={classes.icon} />} {...a11yProps(2)} />
+
           {/* Cidades de atntimento */}
-          <Tab icon={<LocationCity className={classes.icon} />} {...a11yProps(4)} />
+          {/* NÃO IMPLEMENTADO */}
+
+          {/* <Tab icon={<LocationCity className={classes.icon} />} {...a11yProps(4)} /> */}
 
         </Tabs>
       </AppBar>
@@ -113,14 +119,9 @@ export default function FullWidthTabs() {
           {esc?<MeusPlanos/>:null}
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          {esc?<Taxas/>:null}
-        </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
           <ReqAceitos/>
         </TabPanel>
-        <TabPanel value={value} index={4} dir={theme.direction}>
-          <Locais/>
-        </TabPanel>
+       
       </SwipeableViews>
     </div>
   );

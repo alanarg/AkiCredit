@@ -79,7 +79,6 @@ const Cadastro = () => {
                     sobrenome: fields.sobrenome,
                     escStatus:checked
                    };
-                   console.log(data);
                 //    var senha = md5(data.password);
                 //    var ckey = md5(data.ckey);
 

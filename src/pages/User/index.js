@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Header from '../Header';
 import api from '../../services/api';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,7 +10,9 @@ import Tabela from './tabela';
 import UpdateEsc from '../Update/updateEsc';
 import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
 import Initial from './initial_config';
+import {useHistory} from 'react-router-dom';
 import { Container, Typography, Paper, Avatar, Grid} from '@material-ui/core';
+
 
 
 
@@ -79,76 +81,69 @@ const useStyles = makeStyles(theme => ({
 const Usuario = ()=>{
     const classes = useStyles();    
     const [file,setFile] = useState([0]);
-    const [imag2, setImag2] = useState([0]);
     const [load, setLoad] = useState(true);
     const dispatch = useDispatch();
     const esc = useSelector(state => state.esc.esc);
     const user = useSelector(state => state.usuario.user);
+    const history = useHistory();
     const i = localStorage.getItem('LOGO');
 
    
+    //Quando for implementado o uso de avatares utilizaremos
+    // function handleChange(e) {
+    //     if(e.target.files[0]){
+    //         console.log(e.target.files[0]);
+    //         setFile(e.target.files[0]);
 
-    function selecaoImagem(event) {
-        setFile({
-            file: URL.createObjectURL(event.target.files[0])
-      
-          });        
-    }
+    //     }       
+    // };
 
       //Verificar se o usuário é novo para começar com as primeiras configurações
     function verifyNew(){
         // if(user.user_logo){
         //     return setImage(URL.createObjectURL(user.user_logo.File));
         // }    
-        console.log(esc); 
         if(esc.exists==="não"){
             return <Initial/>
         }
 
     }
-    function srcImg(){
-        return 
-    }
-    function updateLogo(){
-        // try{
-        //     const fd = new FormData();
-        //     fd.append('logo',imag2, imag2.name);
-        //    await api.patch('/esc',fd,{headers:{'Authorization': localStorage.getItem('U_ID')}} ).then(res=> console.log(res.data));
-        // return  console.log(user);
-
-        console.log(file);
+   
+    // async function handleUpload(){
+    //     try{
+            
+    //        await api.patch('/esc/logo', file,{headers:{'Authorization': localStorage.getItem('U_ID')}} ).then(res=> console.log(res.data));
+        
 
             
-        // }catch(error){
-        //     return console.log(error.response);
-        // }
-    }
+    //     }catch(error){
+    //         return console.log(error.response);
+    //     }
+    // }
     return <>
             <div className={classes.root}>
             
             <Header/>
             <Container  className={classes.container}>
                 <Grid container   spacing={1} >
-                <Grid item  xs={4}>
+                {/* <Grid item  xs={4}>
                 <Paper className={classes.paper2}>
 
-        {/* {setImag2(URL.createObjectURL(user.user_logo.logo))} */}
                     
                    <img src={file.File} alt="esc logo" width="200px" height="100px"/> 
                     
                 </Paper>
                 <label for="select"><LibraryAdd className={classes.select}/></label>
-                <input type="file" id="select" onChange={selecaoImagem} className={classes.btnimg}/>
-                {/* //Botão para upload */}
-                {/* <button onClick={updateLogo} style={{width:'50px', height:'100px', backgroundColor:'#00acba'}}/> */}
-                </Grid>
-                <Grid item  xs={8} >
+                <input type="file" id="select" onChange={handleChange} className={classes.btnimg}/>
+               
+                <button onClick={handleUpload} style={{width:'50px', height:'100px', backgroundColor:'#00acba'}}/>
+                </Grid> */}
+                <Grid item  xs >
                 <UpdateEsc/>
-
                     <Paper className={classes.paper2}>
                         <Grid container>
                             <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px', paddingLeft:'20px'}}>
-                                <h1 style={{ color:'#00acba'}}>R${esc.esc?esc.esc.limiteDeCredito:0},00</h1>
+                                <h1 style={{ color:'#00acba'}}>R${esc.limiteDeCredito},00</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>
@@ -165,19 +160,6 @@ const Usuario = ()=>{
                     </Paper>
                 </Grid>
                 <Grid item  xs={12}>
-                    {/* completar com essas informações
-                    "cep": "",
-                    "cidadesLimites": "",
-                    "cnpj": "12345678901",
-                    "cpf": "12345678890",
-                    "email": "jubileu@agmail.com",
-                    "limiteDeCredito": "",
-                    "linhaDeCredito": "",
-                    "logo": " ",
-                    "nomeESC": "",
-                    "nomeResponsavel": "almanac",
-                    "telefone": "",
-                    "ultimoRecebimento": 1589611978696 */}
                     <Tabela style={{display:'block'}}/>
                 </Grid>
                 </Grid>

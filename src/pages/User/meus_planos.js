@@ -24,10 +24,9 @@ const useStyles = makeStyles({
 
 const MeusPlanos = ()=>{
     const classes = useStyles();
-    const esc = useSelector(state=> state.esc.esc.esc_object);
+    const esc = useSelector(state=> state.esc.esc);
     const dispatch = useDispatch();
     const [valor,setValor] = useState(0);
-    console.log(esc)
   
   
     const PrettoSlider = withStyles({

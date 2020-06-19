@@ -51,8 +51,7 @@ const useStyles = makeStyles(theme => ({
      marginBottom:10,
   },
   car:{
-    border: '1px solid #00acba',
-    margin:'20px'
+    border: '1px solid #00acba'
   },
   list: {
     marginBottom: theme.spacing(2),

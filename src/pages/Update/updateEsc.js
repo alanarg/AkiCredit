@@ -16,6 +16,7 @@ export default function Initial(){
     const [open, setOpen] = useState(false);
     const [nomeEsc, setNome] = useState("");
     const esc= useSelector (state=> state.esc.esc);
+
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
     const [montante, setMontante] = useState("");
@@ -60,7 +61,7 @@ export default function Initial(){
 
         try{
           const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${values.cep}/json/unicode/`);
-          dispath({type:'ESC_LOC', esc:{esc_loc:re}});
+          dispath({type:'ESC_LOC', esc:re.data});
           console.log(re);
           setOpen(false);
 
@@ -72,14 +73,15 @@ export default function Initial(){
 
         }
         try{
-          await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
+          await api.patch('/esc', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
-          dispath({type:'ESC_OBJECT', esc:{esc_object:values}});
+          dispath({type:'ESC_OBJECT', esc:values});
           setOpen(false);
 
 
 
         }catch(error){
+          //Se houber erros manter o pop up aberto 
           setOpen(true);
 
           setLoad(false);
@@ -90,6 +92,10 @@ export default function Initial(){
 
 
         }
+        setOpenErro(false);
+        setSucc(false);
+        
+
     }
     return <>   
         <div>
@@ -104,10 +110,8 @@ export default function Initial(){
           <TextField
             autoFocus
             margin="dense"
-            placeholder={esc.esc_object?esc.esc_object.nomeESC:null}
-            required
             id="name"
-            label="Nome da ESC"
+            label={esc?esc.nomeESC:null}
             type="text"
             onBlur={e=> e.preventDefault(setNome(e.target.value)) }
             fullWidth
@@ -115,10 +119,9 @@ export default function Initial(){
             <TextField
             autoFocus
             required
-            placeholder={esc.esc_object?esc.esc_object.cep:null}
             margin="dense"
             id="name"
-            label="CEP"
+            label={esc?esc.cep:null}
             type="number"
             onBlur={e=> e.preventDefault(setCep(e.target.value)) }
             fullWidth
@@ -127,8 +130,7 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            placeholder={esc.esc_object?esc.esc_object.telefone:null}
-            label="Telefone"
+            label={esc?esc.telefone:null}
             required
             type="number"
             onBlur={e=> e.preventDefault(setTelefone(e.target.value)) }
@@ -138,8 +140,7 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            placeholder={esc.esc_object?esc.esc_object.limiteDeCredito:null}
-            label="Limite de Crédito"
+            label={esc?esc.limiteDeCredito:null}
             type="number"
             required
             onBlur={e=> e.preventDefault(setMontante(e.target.value)) }
@@ -150,8 +151,7 @@ export default function Initial(){
           margin="dense"
           id="name"
           required
-          placeholder={esc.esc_object?esc.esc_object.cidadesLimites:null}
-          label="Cidades limítrefes"
+          label={esc?esc.cidadesLimites:null}
           type="text"
           onBlur={e=> e.preventDefault(setCidades(e.target.value)) }
           fullWidth
@@ -160,8 +160,7 @@ export default function Initial(){
           autoFocus
           margin="dense"
           id="name"
-          placeholder={esc.esc_object?esc.esc_object.linhaDeCredito:null}
-          label="Linhas de financiamento"
+          label={esc?esc.linhaDeCredito:null}
           type="text"
           required
           onBlur={e=> e.preventDefault(setPlanos(e.target.value)) }

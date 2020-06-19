@@ -14,7 +14,8 @@ import InboxIcon from '@material-ui/icons/PowerSettingsNew';
 import DraftsIcon from '@material-ui/icons/ViewQuilt';
 import SendIcon from '@material-ui/icons/Home';
 import Options from '@material-ui/icons/Apps';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { useScrollTrigger } from '@material-ui/core';
 
 const StyledBack = withStyles((theme) => ({
   backdrop: {
@@ -69,12 +70,14 @@ export default function CustomizedMenus() {
   }
 
   const handleClose = () => {
+    
     setAnchorEl(null);
   };
 
   async function handleHome(){
        setOpen(true);
        history.push('/usuario');
+       setOpen(false);
        return setOpen(false);
   }
 
@@ -100,7 +103,7 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-     
+      
         <StyledMenuItem onClick={handleHome}>
           <ListItemIcon>
               <SendIcon fontSize="small" />

@@ -7,45 +7,54 @@ import History from './history';
 import  RequerenteInterface from './pages/requerente_interface/index';
 import Dash from  './pages/ESC/dashboard';
 import Req from './pages/requerentes/index';
+import {useSelector} from 'react-redux';
 
-const isLoggedIn = () => {
- 
-  return localStorage.getItem('U_ID')!=null;
+const isLoggedIn = (u) => {
+  if(localStorage.getItem('U_ID') && u === 1){
+    return true;
+  }else{
+    return false;
+  }
 }
   
-  const SecuredRoute = ({ component: Component, ...rest }) => (
+  const SecuredRoute = ({ component: Component, userType:user, ...rest }) => (
       
     <Route
       {...rest}
       render={props =>
       
-        isLoggedIn() === true ? (
+        isLoggedIn(user) === true ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )
+
       }
     />
   );
+
   // const SecuredLogin = ({ component: Component, ...rest})=>(
   //     <Route {...rest} render={props => }
   // );
   
 
-const Routes = ()=>(
+const Routes = ()=>{
+  const user = useSelector(state => state.usuario.user);
+  return <>
     <Router history={History}>
         <Switch>
             <Route path="/login"  component={Login}/>
             <Route exact path="/" component={Main}/>
-            <SecuredRoute path="/req_interface" component={RequerenteInterface}/>
-            <SecuredRoute path="/usuario" component={Usuario}/>
-            <SecuredRoute path="/esc" component={Dash}/>
-            <SecuredRoute path="/requerentes" component={Req}/>
+            <Route path="/req_interface" component={RequerenteInterface} />
+            <SecuredRoute path="/usuario" component={Usuario} userType={user.escStatus}/>
+            <SecuredRoute path="/esc" component={Dash} userType={user.escStatus}/>
+            <SecuredRoute path="/requerentes" component={Req} userType={user.escStatus}/>
 
 
           
         </Switch>
     </Router>
-);
+    </>
+};
 
 export default Routes;

@@ -162,11 +162,11 @@ export default function Dashboard() {
             <img src={logo} alt="akicredit" width="80vw"></img>
           </Typography>
           {/* aqui atualkizammos quando surgem novos requerentes pelo new_req*/}
-          <IconButton onClick={handleNotif} color="inherit">
+          {/* <IconButton onClick={handleNotif} color="inherit">
             <Badge badgeContent="{new_req}" color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           {/* Menu  */}
           <Me/>
         </Toolbar>

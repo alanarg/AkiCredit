@@ -26,19 +26,19 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" style={{color: '#ffff' }} />
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon style={{color: '#ffff'}} fontSize="large" />
       </ListItemIcon>
       <ListItemText primary="Meus planos" style={{color: '#ffff'}}/>
-    </ListItem>
+    </ListItem> */}
     <ListItem button onClick={e => history.push("/requerentes")}>
       <ListItemIcon>
         <PeopleIcon style={{color: '#ffff'}} fontSize="large"/>
       </ListItemIcon>
       <ListItemText primary="Requerentes" style={{color: '#ffff'}}/>
     </ListItem>
-    <ListItem button>
+    {/* <ListItem button>
       <ListItemIcon>
         <BarChartIcon style={{color: '#ffff'}} fontSize="large"/>
       </ListItemIcon>
@@ -49,6 +49,6 @@ export const mainListItems = (
         <LayersIcon style={{color: '#ffff'}} fontSize="large"/>
       </ListItemIcon>
       <ListItemText primary="Finalizados" style={{color: '#ffff'}}/>
-    </ListItem>
+    </ListItem> */}
   </div>
 );

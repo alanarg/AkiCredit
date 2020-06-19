@@ -58,7 +58,7 @@ export default function Initial(){
 
         try{
           const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${values.cep}/json/unicode/`);
-          dispath({type:'ESC_LOC', esc:{esc_loc:re}});
+          dispath({type:'ESC_LOC', esc:re});
           console.log(re);
 
         }catch(error){
