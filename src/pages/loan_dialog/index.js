@@ -49,7 +49,7 @@ export default function ResponsiveDialog(props) {
 
   return (
     <div>
-      <Button variant="outlined" style={{borderColor:'#00acba', color:'#00acba'}} onClick={handleClickOpen}>
+      <Button variant="outlined" style={{borderColor:'#00acba', color:'#00acba', marginTop:'10px'}} onClick={handleClickOpen}>
         Saber mais
       </Button>
       <Dialog
@@ -62,7 +62,9 @@ export default function ResponsiveDialog(props) {
         <DialogTitle id="responsive-dialog-title" style={{color:'#00ACBA', fontSize:'80px'}}><h1>R${props.info.valor},00</h1></DialogTitle>
 
         <DialogContent>
-          
+        <DialogContentText>
+          <strong>CPF:</strong>{res.cpf}
+          </DialogContentText>
           <DialogContentText>
           <strong>CNPJ:</strong>{res.cnpj}
           </DialogContentText>
@@ -80,6 +82,10 @@ export default function ResponsiveDialog(props) {
           </DialogContentText>
           <DialogContentText>
           <strong>Valor:</strong>{props.info.valor}
+
+          </DialogContentText>
+          <DialogContentText>
+          <strong>Descrição:</strong>{props.info.descricao}
 
           </DialogContentText>
         </DialogContent>

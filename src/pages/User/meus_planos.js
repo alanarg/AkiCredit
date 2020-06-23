@@ -16,23 +16,31 @@ const useStyles = makeStyles({
         padding:'10px'
     },
     dado:{
-        backgroundColor:'#00acba',
-        padding:'5px',
-        borderRadius:'15px'
-    }
+      backgroundColor:'#00acba',
+      borderRadius:'15px',
+      marginLeft:'10px',
+      color:'white',
+      paddingLeft:'10px',
+      fontSize:'20px'
+
+
+  }
 });
 
 const MeusPlanos = ()=>{
     const classes = useStyles();
     const esc = useSelector(state=> state.esc.esc);
+    const taxa = useSelector(state=> state.esc.esc_taxas);
+
     const dispatch = useDispatch();
     const [valor,setValor] = useState(0);
   
   
+
     const PrettoSlider = withStyles({
         root: {
           color: '#00acba',
-          width:'250px'
+          height:'200px'
           
         },
        
@@ -68,14 +76,15 @@ const MeusPlanos = ()=>{
         time = setTimeout(()=>{
            tgtv = newValue
         setValor(tgtv)
-  
+        dispatch({type:'ESC_TAXAS', taxa_geral:tgtv});
+          
         }, 1000)
-  
-      }
+
+    }
   
 
     return <>
-
+              {console.log(valor)}
             <Paper className={classes.paper} elevation={2}>
                 <div align="center">
                         <Typography variant="h6">
@@ -96,10 +105,15 @@ const MeusPlanos = ()=>{
                                 </li>
                          </ul>
                      </Grid>
-                     <Grid item xs={12} sm={6} style={{paddingLeft:'150px'}}>
-                         <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"  onChange={	handleChange}/><h1 style={{color:'#00acba'}}>{valor}% ao mês</h1>
+                     <Grid item xs>
+                         <PrettoSlider orientation="vertical" valueLabelDisplay="auto" aria-label="pretto slider"  onChange={	handleChange}/>
 
                      </Grid>
+                     <Grid item xs>
+                     <h1 style={{color:'#00acba'}}>{valor === 0?taxa: valor}% ao mês</h1>
+
+                     </Grid>
+
                     </Grid>
             </Paper>
     </>

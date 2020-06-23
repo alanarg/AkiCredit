@@ -143,7 +143,7 @@ const Usuario = ()=>{
                     <Paper className={classes.paper2}>
                         <Grid container>
                             <Grid item xs={6} style={{paddingTop:'50px', paddingBottom:'50px', paddingLeft:'20px'}}>
-                                <h1 style={{ color:'#00acba'}}>R${esc.limiteDeCredito},00</h1>
+                                <h1 style={{ color:'#00acba'}}>R${esc.limiteDeCredito}</h1>
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>

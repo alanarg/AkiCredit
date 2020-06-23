@@ -23,16 +23,6 @@ const Taxas = ()=>{
     const dispatch = useDispatch();
 
     return <>
-        
-        {/* "uid": "0ogZSDK6RRUOjGv60y4egZBGhbD2",
-    "nome": "almanac",
-    "sobrenome": "projeto",
-    "cpf": 12345678890,
-    "cnpj": 12345678901,
-    "email": "jubileu@agmail.com",
-    "emailVerified": false,
-    "phoneNumber": null */}
-  
             <Paper className={classes.paper} elevation={2}>
                 <div align="center">
                         <Typography variant="h6">

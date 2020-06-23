@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Aceitos from '../req_dialog/aceitos';
 import Perfil from '../req_dialog/perfil';
 import Requisicoes from '../req_dialog/requisicoes';
+import Requerer from '../req_dialog/requisitar';
 import {Face, FindInPage,Gavel} from '@material-ui/icons';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 
@@ -131,9 +132,10 @@ export default function RequerenteInterface(){
                             <Typography variant="h4" className={classes.txt}>Quanto deseja emprestar?</Typography>
                             <br></br>
                             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"  onChange={	handleChange}/>
-                            
+                    
                             <Typography variant="h6" className={classes.txt}>R${valor},00</Typography>
-                           
+                            <Requerer info={valor}/>
+        
                        </Container>
                     </Grid>
                     <Grid item xs>
@@ -162,43 +164,12 @@ export default function RequerenteInterface(){
                         </ul>
                             
                         </Container>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <Grid container justify="space-around" style={{marginTop:'10px'}}>
-                    <Typography variant="h12" className={classes.txt}>Selecione o tempo a pagar e descreva sua requisição minimamente(maiores chances)</Typography>
-                     
-                      
-                      <Grid item xs>                      
-                      <Typography variant="h6" className={classes.txt}>Meses:</Typography>
-
-                      </Grid>
-                      <Grid item xs>
-                      <Typography variant="h4" className={classes.txt}>{mes}</Typography>
-
-                      </Grid>
-                      <Grid item xs>                      
-                      <button  onClick={()=>{ if(mes!==0){setMes(mes-1)};}} style={{ width:'50px', height:'50px',marginRight:'5px', backgroundColor:'#00acba', borderRadius:'10px'}}><h4 style={{color:'white', fontFamily:'Roboto'}}>-</h4></button> 
-                      <button  onClick={()=>{ if(mes<=35){setMes(mes+1)};}} style={{ width:'50px', height:'50px', backgroundColor:'#00acba', borderRadius:'10px'}}><h4 style={{color:'white', fontFamily:'Roboto'}}>+</h4></button> 
-
-                      </Grid>
-
-                      
-                            <TextField
-                              id="outlined-multiline-static"
-                              label="Descrição"
-                              multiLine={true} 
-                              maxLength="4"   
-                              variant="outlined"
-                              height="100px"
-                            />
-                            <button  style={{ width:'50vw', height:'50px', backgroundColor:'#00acba', borderRadius:'10px'}}><h2 style={{color:'white', fontFamily:'Roboto'}}>Requisitar</h2></button> 
 
                     </Grid>
+
                     </Grid>
 
-                    
-                </Grid>
+                 
             </div>
 
              

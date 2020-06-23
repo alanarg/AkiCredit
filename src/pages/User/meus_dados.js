@@ -19,9 +19,9 @@ const useStyles = makeStyles({
     dado:{
         backgroundColor:'#00acba',
         borderRadius:'15px',
-        marginLeft:'50px',
+        marginLeft:'10px',
         color:'white',
-        paddingLeft:'50px',
+        paddingLeft:'10px',
         fontSize:'20px'
 
 
@@ -34,25 +34,15 @@ const MeusDados = ()=>{
     const dispatch = useDispatch();
 
     return <>
-        
-        {/* "uid": "0ogZSDK6RRUOjGv60y4egZBGhbD2",
-    "nome": "almanac",
-    "sobrenome": "projeto",
-    "cpf": 12345678890,
-    "cnpj": 12345678901,
-    "email": "jubileu@agmail.com",
-    "emailVerified": false,
-    "phoneNumber": null */}
-  
             <Paper className={classes.paper} elevation={2}>
                 <div align="center">
                         <Typography variant="h6">
                             Meus dados
                         </Typography>
                 </div>
-                <div align="right">
+                {/* <div align="right">
                         <UpdateUser/>
-                </div>
+                </div> */}
                 <Grid container flexDirection="row"  >
                     <Grid item xs={12} sm={6} >
                         <ul style={{listStyle:'none'}}>
@@ -60,7 +50,7 @@ const MeusDados = ()=>{
                                       <p>
                                           <b>Nome:</b>
                                           <div className={classes.dado}>{user.nome+" "+user.sobrenome}</div>
-                                        </p>
+                                     </p>
                                 </li>
                                 <li>
                                     <b>CPF:</b>

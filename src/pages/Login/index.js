@@ -206,7 +206,7 @@ function Login(){
         </div>
         <div className="input-row">
           <button className="button" type="submit" disabled={isSubmitting}><h2 id="h2">Entrar</h2>
-          {loading && <CircularProgress style={{BackgroundColor:'#fffff'}}/>}
+          {loading && <CircularProgress color="inherit"/>}
           </button>
         </div>
         

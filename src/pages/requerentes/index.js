@@ -54,7 +54,7 @@ const Requerentes = (props) =>{
             const requerente =  await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}});
             console.log(requerente);
             dispatch({type:'ADD_REQ', requerente:requerente.data});
-            setReq(Object.values(requerentes));
+            setReq(Object.values(requerente.data));
             setOpen(false);
             // try{
 
@@ -83,12 +83,12 @@ const Requerentes = (props) =>{
                             {req?req.map(requerente => (
                                 <li>
                                     <p>                                            
-                                         <h1 style={{color:'#00acba', marginTop:'5px', marginBottom:'5px'}}>R${requerente.valor},00</h1>                                      
-                                         <strong>{requerente.geolocation.city}</strong>
+                                         <h1 style={{color:'#00acba', marginTop:'5px', marginBottom:'10px'}}>R${requerente.valor},00</h1>                                      
+                                         <strong >{requerente.geolocation.longitude}</strong>
+
                                     </p>                                          
                                          <Dialog  info={requerente} /> 
                                 </li>
-
                             )):null
                             }
                         </ul>
