@@ -41,29 +41,53 @@ const useStyles = makeStyles({
 const Requerentes = (props) =>{
     const classes = useStyles();
     const requerentes = useSelector(state=> state.req.req_prox[0]);
+    const loc = useSelector(state=> state.esc.esc_loc);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(true);
     const [req, setReq] = useState("");
+    const [erromessage, setErromessage] = useState(false);
     const [total, setTotal] = useState({});
+    const [new_req, setNew_req] = useState([0]);
 
     useEffect(() => {
       reqs(); 
     }, []);
+
     async function reqs(){
+        setErromessage(false);
         try{
-            const requerente =  await api.get('/emprestimos', {headers:{'Authorization': localStorage.getItem('U_ID')}});
-            console.log(requerente);
+            const requerente =  await api.get('/emprestimos',{headers:{'Authorization':localStorage.getItem('U_ID')}} );
             dispatch({type:'ADD_REQ', requerente:requerente.data});
-            setReq(Object.values(requerente.data));
+            //Transformando resposta em bjetos
+
+            let reqs = Object.values(requerente.data);
+            // for (let index = 0; index < reqs.length; index++) {
+
+            //     var id = Object.keys(requerente.data)[index];
+            //      //filtrando para a cidade da empresa
+            //     let reqs_filtred = reqs.filter((req)=>{
+            //         return req.geolocation.city === loc.localidade;
+            //     });
+            //     //jogando no array de escs
+            //     console.log({loan_id:id, loan_object:reqs_filtred});
+            //     console.log(new_req);    
+            // }
+             //filtrando para a cidade da empresa
+             let reqs_filtred = reqs.filter((req)=>{
+                return req.geolocation.city === loc.localidade && req.status === 1;
+            });
+            
+            setReq(reqs_filtred);
             setOpen(false);
             // try{
 
             // }catch(error){
-            //     console.log(error.response); 
+            //     console.log(error.rsesponse); 
             // }
 
         }catch(error){
-            return console.log(error)
+            setOpen(false);
+            return setErromessage(true);
 
 
         };
@@ -75,19 +99,20 @@ const Requerentes = (props) =>{
             <div className="requisicoes">
             <Header className="header" />                
                         <Container className={classes.container}>
+                            {/* caso haja probelmas */}
+                            {erromessage && <Paper style={{marginTop:'100px', padding:'20px'}}><Typography variant="h6" color="inherit" >Tente novamente...</Typography></Paper>}
                             <Backdrop open={open}>
                                 <CircularProgress color="inheri"/>
                             </Backdrop>
-                                
                         <ul style={{listStyle:'none'}}>
                             {req?req.map(requerente => (
                                 <li>
-                                    <p>                                            
-                                         <h1 style={{color:'#00acba', marginTop:'5px', marginBottom:'10px'}}>R${requerente.valor},00</h1>                                      
+                                    <p>                          
+                                        {console.log(requerente)}                  
+                                         <h1 style={{color:'#00acba', marginTop:'5px', marginBottom:'10px'}}>R${requerente.valor}</h1>                                      
                                          <strong >{requerente.geolocation.longitude}</strong>
-
                                     </p>                                          
-                                         <Dialog  info={requerente} /> 
+                                         <Dialog  info={requerente} loan={requerente.emprestimoId}/> 
                                 </li>
                             )):null
                             }

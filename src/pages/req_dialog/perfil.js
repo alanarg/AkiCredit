@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import HorizontalLabelPositionBelowStepper from './statusLoan';
@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import {makeStyles} from '@material-ui/core/styles';
 import {LibraryAdd} from '@material-ui/icons';
 import {Avatar} from '@material-ui/core';
+import api from '../../services/api';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -91,19 +92,40 @@ export default function ResponsiveDialog(props) {
   const theme = useTheme();
   const classes = useStyles();
   const [image,setImage] = useState('');
+  const [loan, setLoan] = useState([0]);
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   
 
-  async function selecaoImagem(event) {
 
-    // setImage(URL.createObjectURL(event.target.files[0]),);
-    setImage(URL.createObjectURL(event.target.files[0]));
+  //Quando implementado avatares
+  // async function selecaoImagem(event) {
+
+  //   // setImage(URL.createObjectURL(event.target.files[0]),);
+  //   setImage(URL.createObjectURL(event.target.files[0]));
     
   
-    try{
-        // const api = api.patch('/')
-    }catch(error){
+  //   try{
+  //       // const api = api.patch('/')
+  //   }catch(error){
   
+  //   }
+  // }
+
+  useEffect(()=>{
+    verifyLoans()
+  },[]);
+
+  async function verifyLoans(){
+    try {
+      const res = await api.get('/emprestimos', {headers:{'Authorization':localStorage.getItem('U_ID')}});    
+      const l = Object.values(res.data);
+      let loan_filtred = l.filter((l)=>{
+        return l.clientId === localStorage.getItem('U_ID');
+      });
+      setLoan(loan_filtred);
+    
+    } catch (error) {
+      alert(error.response);
     }
   }
   const handleClickOpen = () => {
@@ -138,7 +160,7 @@ export default function ResponsiveDialog(props) {
         
         <DialogContent>
 
-          <HorizontalLabelPositionBelowStepper/>
+          <HorizontalLabelPositionBelowStepper info={loan}/>
         <DialogTitle id="responsive-dialog-title">{user.nome+" "+user.sobrenome}</DialogTitle>
           
           <DialogContentText>

@@ -77,7 +77,7 @@ export default function Initial(){
           setSucc(true);
           dispath({type:'ESC_OBJECT', esc:values});
           setOpen(false);
-
+          setLoad(false);
 
 
         }catch(error){
@@ -111,7 +111,8 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            label={esc?esc.nomeESC:null}
+            label="Nome ESC"
+            defaultValue={esc?esc.nomeESC:null}
             type="text"
             onBlur={e=> e.preventDefault(setNome(e.target.value)) }
             fullWidth
@@ -121,7 +122,8 @@ export default function Initial(){
             required
             margin="dense"
             id="name"
-            label={esc?esc.cep:null}
+            label="cep"
+            defaultValue={esc?esc.cep:null}
             type="number"
             onBlur={e=> e.preventDefault(setCep(e.target.value)) }
             fullWidth
@@ -130,7 +132,8 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            label={esc?esc.telefone:null}
+            label="telefone"
+            defaultValue={esc?esc.telefone:null}
             required
             type="number"
             onBlur={e=> e.preventDefault(setTelefone(e.target.value)) }
@@ -140,7 +143,8 @@ export default function Initial(){
             autoFocus
             margin="dense"
             id="name"
-            label={esc?esc.limiteDeCredito:null}
+            label="limite de crédito"
+            defaultValue={esc?esc.limiteDeCredito:null}
             type="number"
             required
             onBlur={e=> e.preventDefault(setMontante(e.target.value)) }
@@ -151,7 +155,8 @@ export default function Initial(){
           margin="dense"
           id="name"
           required
-          label={esc?esc.cidadesLimites:null}
+          label="Cidades limítrefes"
+          defaultValue={esc?esc.cidadesLimites:null}
           type="text"
           onBlur={e=> e.preventDefault(setCidades(e.target.value)) }
           fullWidth
@@ -160,7 +165,8 @@ export default function Initial(){
           autoFocus
           margin="dense"
           id="name"
-          label={esc?esc.linhaDeCredito:null}
+          label="Linhas de crédito"
+          defaultValue={esc?esc.linhaDeCredito:null}
           type="text"
           required
           onBlur={e=> e.preventDefault(setPlanos(e.target.value)) }

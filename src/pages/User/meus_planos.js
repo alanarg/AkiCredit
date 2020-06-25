@@ -84,7 +84,6 @@ const MeusPlanos = ()=>{
   
 
     return <>
-              {console.log(valor)}
             <Paper className={classes.paper} elevation={2}>
                 <div align="center">
                         <Typography variant="h6">

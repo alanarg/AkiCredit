@@ -148,7 +148,8 @@ export default function RequerenteInterface(){
                             </li>
                             <li>
                             <div className={classes.caixa}>
-                              <Requisicoes/>
+                              {/* <Requisicoes/> */}
+                              <FindInPage className={classes.icons}/>
                             <Typography variant="h6" className={classes.txt2}>Boletos</Typography>
                                     
                                 </div>
@@ -157,7 +158,7 @@ export default function RequerenteInterface(){
                             <li>
                             <div className={classes.caixa}>
                               <Gavel  className={classes.icons}></Gavel>
-                            <Typography variant="h6" className={classes.txt2}>Contratos</Typography>
+                              <Typography variant="h6" className={classes.txt2}>Contratos</Typography>
                                     
                                 </div>
                             </li>

@@ -10,16 +10,16 @@ function createData(time, amount) {
 
 const data = [
     
-  createData('Janeiro', 0),
-  createData('Fevereiro', 300),
-  createData('Março', 600),
-  createData('Abriu', 800),
-  createData('Maio', 1500),
-  createData('Junho', 2000),
-  createData('Julho', 2400),
-  createData('Agosto', 2400),
-  createData('Setembro', undefined),
-  createData('Outubro', undefined),
+  createData('Janeiro', 100),
+  createData('Fevereiro', 100),
+  createData('Março', 100),
+  createData('Abriu', 100),
+  createData('Maio', 100),
+  createData('Junho', 100),
+  createData('Julho', 100),
+  createData('Agosto', 100),
+  createData('Setembro', 100),
+  createData('Outubro', 100),
   createData('Novembro', undefined),
 
 ];
@@ -47,10 +47,10 @@ export default function Chart() {
               position="left"
               style={{ textAnchor: 'middle', fill: 'green' }}
             >
-              Sales ($)
+              Pagamentos (%)
             </Label>
           </YAxis>
-          <Line type="bars" dataKey="amount" stroke="green" dot={true} />
+          <Line type="bars" dataKey="amount" stroke="#00acba" dot={true} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>

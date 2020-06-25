@@ -103,7 +103,7 @@ export default function ResponsiveDialog(props) {
   const [descricao, setDescricao] = useState("");
   const [image,setImage] = useState('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  
+  const v = props.info;
 
 
 const Schema = Yup.object().shape({
@@ -129,7 +129,7 @@ const Schema = Yup.object().shape({
         	latitude: cepinfo.uf,
         	longitude: cepinfo.bairro
         },
-        valor: props.valor,
+        valor: v,
         tempo: meses,
         descricao:descricao
       }, {headers:{'Authorization': localStorage.getItem('U_ID')}});
@@ -199,7 +199,8 @@ const Schema = Yup.object().shape({
 
           <TextField 
             variant="outlined"
-            type="text" 
+            type="number" 
+            style={{color:"#00acba"}}
             id="cep" 
             name="cep" 
             label="CEP" 

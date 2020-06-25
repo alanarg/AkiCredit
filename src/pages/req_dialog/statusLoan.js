@@ -1,8 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
-import { StepIcon, Grid } from "@material-ui/core";
+import { Button, StepIcon, Grid, Typography } from "@material-ui/core";
 
-const message = ['Empréstimo requisistado','ESC analisando seu perfil', 'Aceito!', 'Rejeitado'];
+const message = ['Empréstimo requisistado','ESC analisando seu perfil', 'Aceito! A crediária entrará em contato!', 'Rejeitado'];
 
 const styles = theme => ({
   root: {
@@ -11,7 +11,7 @@ const styles = theme => ({
     
     color: "#c1c1c1",
     "&$active": {
-      color: "green"
+      color: "#00acba"
     },
     "&$completed": {
       color: "#00acba"
@@ -24,11 +24,23 @@ const styles = theme => ({
 //Pegar o status via propriedade do dialog
 
 const Demo=(props)=> {
+
+
+
+  async function handleLoan(){
+
+  }
   return (
     <div>
-      <Grid container>
+      {props.info?props.info.map(loan=>(
+        
+        <Grid container>
+          <Grid item xs={12}>
+          <Typography variant="h4" style={{color:"#00acba"}}>R${loan.valor}</Typography>
+
+          </Grid>
         <Grid item xs={6}>
-        <StepIcon icon="1"  classes={props.classes}/>
+        <StepIcon icon="1" completed classes={props.classes}/>
         </Grid>
         <Grid item xs={6}>
         {message[0]}
@@ -36,21 +48,26 @@ const Demo=(props)=> {
         </Grid>
         <Grid item xs={6}>
 
-        <StepIcon icon="2"  classes={props.classes} />
+        <StepIcon icon="2" completed={loan.status<=2?false:true}  classes={props.classes} />
 
         </Grid>
         <Grid item xs={6}>
-            {message[1]}
+            {loan.status<=2?message[1]:<p>Analisado</p>}
         </Grid>
         <Grid item xs={6}>
-            <StepIcon icon="3" completed classes={props.classes} />
+            <StepIcon icon="3" completed={loan.status===3?true:false} classes={props.classes} />
         </Grid>
         <Grid item xs={6}>
-            {message[2]}
+            {loan.status===3?message[2]:null}
           
         </Grid>
+        {/* <Button style={{backgroundColor:'red'}} onClick={e=> e.preventDefault(handleLoan(loan.em))}>Excluir</Button> */}
       </Grid>
-     
+      ))
+          :null
+       
+      }
+    
     </div>
   );
 }

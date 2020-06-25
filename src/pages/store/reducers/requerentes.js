@@ -16,7 +16,7 @@ export default function req(state = INITIAL_STATE, action){
 
     }
     if(action.type === 'REQ_ACEITO'){
-        return{ ...state, req_aceito: [action.req_aceito]};
+        return{ ...state, req_aceito: action.req_aceito};
     }
     return state;
 }

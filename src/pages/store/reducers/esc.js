@@ -16,7 +16,7 @@ export default function esc(state = INITIAL_VALOR, action){
         return{...state,esc_taxas: action.taxa_geral};
     }
     if(action.type === 'ESC_LOC'){
-        return{esc_loc:action.esc};
+        return{...state, esc_loc:action.esc};
     }
     return state;
 }
