@@ -82,10 +82,8 @@ export default function CustomizedExpansionPanels() {
   const [expanded, setExpanded] = React.useState(1);
   const [valor,setValor] = useState(0);
 
-
-  useEffect(()=>{
-    handleLoans();
-  },[]);
+  //eslint-disable-next-line
+  useEffect(()=>{ handleLoans();},[]);
   
   
   async function handleLoans(){

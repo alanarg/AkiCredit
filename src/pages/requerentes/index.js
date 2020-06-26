@@ -43,10 +43,8 @@ const Requerentes = (props) =>{
     const [open, setOpen] = useState(true);
     const [req, setReq] = useState([]);
     const [erromessage, setErromessage] = useState(false);
-
-    useEffect(() => {
-      reqs(); 
-    },[]);
+    //eslint-disable-next-line
+    useEffect(() => {reqs(); },[]);
 
     async function reqs(){
         setErromessage(false);
