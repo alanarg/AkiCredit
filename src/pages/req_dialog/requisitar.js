@@ -192,7 +192,6 @@ export default function ResponsiveDialog(props) {
         </DialogContent>
         <DialogActions>
         {opens && <Typography variant="h6" style={{color:'green'}}>Pedido de empréstmio enviado!</Typography>}        
-        {opene && <Typography variant="h6" style={{color:'red'}}>CEP incorreto!</Typography>}        
 
           <Button autoFocus onClick={handleClose} color="primary">
             fechar
