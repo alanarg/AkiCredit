@@ -32,7 +32,7 @@ export default function validarCNPJ(cnpj) {
           if (pos < 2)
                 pos = 9;
         }
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado !== digitos.charAt(0))
             return false;
              
@@ -45,7 +45,7 @@ export default function validarCNPJ(cnpj) {
           if (pos < 2)
                 pos = 9;
         }
-        var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado !== digitos.charAt(1))
               return false;
                

@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
-import { Button, StepIcon, Grid, Typography } from "@material-ui/core";
+import { StepIcon, Grid, Typography } from "@material-ui/core";
 
 const message = ['Empréstimo requisistado','ESC analisando seu perfil', 'Aceito! A crediária entrará em contato!', 'Rejeitado'];
 
@@ -27,9 +27,7 @@ const Demo=(props)=> {
 
 
 
-  async function handleLoan(){
-
-  }
+ 
   return (
     <div>
       {props.info?props.info.map(loan=>(

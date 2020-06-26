@@ -9,11 +9,11 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MyData from './meus_dados';
-import MeusPlanos from './meus_planos';
+// import MeusPlanos from './meus_planos';
 // import Taxas from './minhas_taxas';
 import ReqAceitos from './req_aceitos';
 // import Locais from './localizacoes';
-import {AccountCircle, AttachMoney, SupervisedUserCircle} from '@material-ui/icons';
+import {AccountCircle, SupervisedUserCircle} from '@material-ui/icons';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
-  const esc = useSelector(state => state.esc.esc);
   const user = useSelector(state => state.usuario.user);
   const [value, setValue] = React.useState(0);
 

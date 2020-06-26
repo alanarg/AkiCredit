@@ -2,13 +2,12 @@ import React,{useState, useEffect} from 'react';
 import Header from '../Header/index';
 import api from '../../services/api';
 import './styles.css';
-import {Cached} from '@material-ui/icons';
-import {Avatar, Container, CircularProgress, Button, Backdrop} from '@material-ui/core';
+import { Container, CircularProgress, Backdrop} from '@material-ui/core';
 import  Dialog from '../loan_dialog/index';
 import {makeStyles} from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 
-import {Paper, Grid, List, ListItem, ListItemText, ListItemAvatar, Typography} from '@material-ui/core';
+import {Paper,  Typography} from '@material-ui/core';
 
 
 
@@ -40,18 +39,14 @@ const useStyles = makeStyles({
 
 const Requerentes = (props) =>{
     const classes = useStyles();
-    const requerentes = useSelector(state=> state.req.req_prox[0]);
     const loc = useSelector(state=> state.esc.esc_loc);
-    const dispatch = useDispatch();
     const [open, setOpen] = useState(true);
     const [req, setReq] = useState([]);
     const [erromessage, setErromessage] = useState(false);
-    const [total, setTotal] = useState({});
-    const [new_req, setNew_req] = useState([0]);
 
     useEffect(() => {
       reqs(); 
-    }, []);
+    });
 
     async function reqs(){
         setErromessage(false);
@@ -74,7 +69,7 @@ const Requerentes = (props) =>{
             // }catch(error){
             //     console.log(error.rsesponse); 
             // }
-
+ 
         }catch(error){
             setOpen(false);
             return setErromessage(true);

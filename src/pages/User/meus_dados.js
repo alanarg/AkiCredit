@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {useSelector, useDispatch} from 'react-redux';
-import {Typography, Slider,Paper, Grid} from '@material-ui/core';
+import { Slider,Paper, Grid} from '@material-ui/core';
 
 
 

@@ -3,7 +3,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import Me from '../Header/menu';
-import {useSelector, useDispatch} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -31,7 +30,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        aki.credit
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -126,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);

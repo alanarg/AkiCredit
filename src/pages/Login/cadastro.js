@@ -143,7 +143,7 @@ const Cadastro = () => {
                         <div className="input-row">
                             <div>
                                 
-                            <button type="submit" className="reset" className="button">Register</button>
+                            <button type="submit"  className="button">Register</button>
                             {loading && <CircularProgress/>}
                             </div>
                             <div>

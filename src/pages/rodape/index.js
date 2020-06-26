@@ -62,7 +62,7 @@ export default function Rodape(){
                         <li>
                       <div style={{display:'flex'}}>
                          <img src={face} alt="akicredit_facebook" style={{width:'7%'}}></img>   
-                        <a href="https://m.facebook.com/akicredit/" target="_blank"><p>Aki facebook</p></a>
+                        <a href="https://m.facebook.com/akicredit/" target="_blank" rel="noopener noreferrer"><p>Aki facebook</p></a>
                       </div>
                         </li>
                         <li>

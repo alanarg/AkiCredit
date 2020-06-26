@@ -22,7 +22,6 @@ import Rodape from '../rodape/index';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Devices from  '@material-ui/icons/Grain';
-import { useHistory } from "react-router-dom";
 
 import './css.css';
 

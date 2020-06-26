@@ -6,11 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {Avatar, CircularProgress} from '@material-ui/core';
+import {CircularProgress} from '@material-ui/core';
 import {CheckRounded} from '@material-ui/icons';
 import api from '../../services/api';
 import { useTheme } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
 
 
 export default function ResponsiveDialog(props) {

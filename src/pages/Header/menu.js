@@ -1,6 +1,5 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Backdrop from '@material-ui/core/Backdrop';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,7 +10,6 @@ import InboxIcon from '@material-ui/icons/PowerSettingsNew';
 import DraftsIcon from '@material-ui/icons/ViewQuilt';
 import SendIcon from '@material-ui/icons/Home';
 import Options from '@material-ui/icons/Apps';
-import {useDispatch} from 'react-redux';
 
 
 const StyledMenu = withStyles({

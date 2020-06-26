@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {makeStyles, withStyles } from '@material-ui/core/styles';
 import api from '../../services/api';
 import {CheckRounded} from '@material-ui/icons';
-import {useSelector, useDispatch} from 'react-redux';
+import  {useDispatch} from 'react-redux';
 import {Button,CircularProgress, Grid, Slider} from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -85,7 +85,7 @@ export default function CustomizedExpansionPanels() {
 
   useEffect(()=>{
     handleLoans();
-  },[]);
+  });
   
   
   async function handleLoans(){
