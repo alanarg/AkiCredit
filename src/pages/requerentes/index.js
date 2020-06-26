@@ -46,7 +46,7 @@ const Requerentes = (props) =>{
 
     useEffect(() => {
       reqs(); 
-    });
+    },[]);
 
     async function reqs(){
         setErromessage(false);

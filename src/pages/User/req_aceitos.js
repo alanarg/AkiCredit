@@ -85,7 +85,7 @@ export default function CustomizedExpansionPanels() {
 
   useEffect(()=>{
     handleLoans();
-  });
+  },[]);
   
   
   async function handleLoans(){
