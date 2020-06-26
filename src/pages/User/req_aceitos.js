@@ -89,8 +89,8 @@ export default function CustomizedExpansionPanels() {
   
   
   async function handleLoans(){
-    setLoad(true);
     try {
+    setLoad(true);
       const loa = await api.get('/esc/verRequisicoesAceitas', {headers:{'Authorization': localStorage.getItem('U_ID')}});
       var res = Object.values(loa.data);
       dispatch({type:'REQ_ACEITO', req_aceito:res});
