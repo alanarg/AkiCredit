@@ -1,17 +1,12 @@
 import React,{useState} from 'react';
-import {Container, Paper,  Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField} from '@material-ui/core';
-import {useSelector, useDispatch}  from 'react-redux';
+import {Container,  Grid, Typography} from '@material-ui/core';
 import Header from '../Header/index';
 import Slider from '@material-ui/core/Slider';
 import Rodape from '../rodape/index';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import Aceitos from '../req_dialog/aceitos';
+
 import Perfil from '../req_dialog/perfil';
-import Requisicoes from '../req_dialog/requisicoes';
 import Requerer from '../req_dialog/requisitar';
-import {Face, FindInPage,Gavel} from '@material-ui/icons';
+import { FindInPage,Gavel} from '@material-ui/icons';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -71,9 +66,6 @@ const useStyles = makeStyles({
 export default function RequerenteInterface(){
     const classes = useStyles();
     const [valor, setValor] = useState(0);
-    const dispatch = useDispatch();
-    const [age, setAge] = useState('');
-    const [mes, setMes] = useState(0);
     
 
     const PrettoSlider = withStyles({

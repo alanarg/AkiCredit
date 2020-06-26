@@ -34,11 +34,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ButtonAppBar = () => {
-  const [anchor, setAnchor] = useState(null);
-  const [img,setImg] = useState("");
   const history = useHistory();
   const user= useSelector (state=> state.usuario.user);
-  const logo= useSelector (state=> state.usuario.user_logo);
 
   function SignOut(){
     localStorage.removeItem('U_ID')
@@ -50,7 +47,7 @@ const ButtonAppBar = () => {
     if(!localStorage.getItem('U_ID')){
       return <Link to="/login"><Perfil /></Link>
     
-    }else if(user.escStatus == 1){
+    }else if(user.escStatus === 1){
        
         const letra = user.nome.split("");
        return <><Typography variant="h6">Olá,{user.nome} </Typography><Avatar style={{marginRight:'5px'}}>{letra[0]}</Avatar><Menu/></>

@@ -5,8 +5,6 @@ import HorizontalLabelPositionBelowStepper from './statusLoan';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import {makeStyles} from '@material-ui/core/styles';
-import {LibraryAdd} from '@material-ui/icons';
-import {Avatar} from '@material-ui/core';
 import api from '../../services/api';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -91,7 +89,6 @@ export default function ResponsiveDialog(props) {
   const user = useSelector(state=> state.usuario.user);
   const theme = useTheme();
   const classes = useStyles();
-  const [image,setImage] = useState('');
   const [loan, setLoan] = useState([0]);
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   

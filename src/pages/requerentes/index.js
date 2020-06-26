@@ -44,7 +44,7 @@ const Requerentes = (props) =>{
     const loc = useSelector(state=> state.esc.esc_loc);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(true);
-    const [req, setReq] = useState("");
+    const [req, setReq] = useState([]);
     const [erromessage, setErromessage] = useState(false);
     const [total, setTotal] = useState({});
     const [new_req, setNew_req] = useState([0]);
@@ -57,26 +57,16 @@ const Requerentes = (props) =>{
         setErromessage(false);
         try{
             const requerente =  await api.get('/emprestimos',{headers:{'Authorization':localStorage.getItem('U_ID')}} );
-            dispatch({type:'ADD_REQ', requerente:requerente.data});
             //Transformando resposta em bjetos
+            console.log(requerente);
 
             let reqs = Object.values(requerente.data);
-            // for (let index = 0; index < reqs.length; index++) {
-
-            //     var id = Object.keys(requerente.data)[index];
-            //      //filtrando para a cidade da empresa
-            //     let reqs_filtred = reqs.filter((req)=>{
-            //         return req.geolocation.city === loc.localidade;
-            //     });
-            //     //jogando no array de escs
-            //     console.log({loan_id:id, loan_object:reqs_filtred});
-            //     console.log(new_req);    
-            // }
-             //filtrando para a cidade da empresa
+           
              let reqs_filtred = reqs.filter((req)=>{
                 return req.geolocation.city === loc.localidade && req.status === 1;
             });
-            
+            console.log(reqs_filtred);
+
             setReq(reqs_filtred);
             setOpen(false);
             // try{

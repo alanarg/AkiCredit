@@ -91,18 +91,12 @@ const MeusPlanos = ()=>{
                         </Typography>
                 </div>
                 <Grid container flexDirection="row"  >
-                    <Grid item xs={12} sm={6}>
-                        <ul style={{listStyle:'none'}}>
-                                <li>
-                                      <p>
-                                          <b>Limite de crédito:</b>  <div className={classes.dado}>{esc?esc.limiteDeCredito:null}</div>
-                                          <br></br>
-                                          <b>Linhas de Crédito:</b><div className={classes.dado}>{esc?esc.linhaDeCredito:null}</div>
-                                          <br></br>
-                                          <b>Ultimo Recebimento:</b><div className={classes.dado}>{esc?esc.ultimoRecebimento:null}</div>
-                                      </p>  
-                                </li>
-                         </ul>
+                    <Grid item xs={12} sm={6}>                        
+                      <b>Limite de crédito:</b>  <div className={classes.dado}>{esc?esc.limiteDeCredito:0}</div>
+                      <br></br>
+                      <b>Linhas de Crédito:</b><div className={classes.dado}>{esc?esc.linhaDeCredito:0}</div>
+                      <br></br>
+                      <b>Ultimo Recebimento:</b><div className={classes.dado}>{esc?esc.ultimoRecebimento:0}</div>                              
                      </Grid>
                      <Grid item xs>
                          <PrettoSlider orientation="vertical" valueLabelDisplay="auto" aria-label="pretto slider"  onChange={	handleChange}/>
@@ -110,7 +104,6 @@ const MeusPlanos = ()=>{
                      </Grid>
                      <Grid item xs>
                      <h1 style={{color:'#00acba'}}>{valor === 0?taxa: valor}% ao mês</h1>
-
                      </Grid>
 
                     </Grid>

@@ -1,6 +1,6 @@
 const INITIAL_VALOR = {
     esc:{},
-    esc_taxas:{},
+    esc_taxas:0,
     esc_loc:{}
     
 }

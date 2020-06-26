@@ -14,15 +14,13 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import logo from './Icon-Aki-2-branco.png';
@@ -128,7 +126,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const new_req = useSelector(state => state.req.new_req);
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -138,11 +135,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  //Quando o usuario clica para ver os novos requerentes, 
-  //é limpo o numero de notificaçoes
-  function handleNotif(){
-    dispatch({type:'NOTIFY', new_req:{qtd:0}})
-  }
+    
 
   return (
     <div className={classes.root}>

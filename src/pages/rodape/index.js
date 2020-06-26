@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Paper, Typography, Grid} from '@material-ui/core';
+import { Typography, Grid} from '@material-ui/core';
 import './css.css';
 import face from './face.png';
 import insta from './instaa.png';

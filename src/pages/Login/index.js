@@ -4,8 +4,7 @@ import * as Yup from "yup";
 import Error from "./error";
 import md5 from 'md5';
 import {useDispatch} from 'react-redux';
-import Alert from '@material-ui/lab/Alert';
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import history from '../../history';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -24,20 +23,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import './css.css';
 import Cadastro from './cadastro';
+import axios from 'axios';
 import api from '../../services/api';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -133,7 +122,13 @@ function Login(){
                 try{
                     const escverify =  await api.get('/esc', {headers:{'Authorization': resposta.data.user.uid}});
                       dispatch({type:'ESC_OBJECT', esc:escverify.data});
-                    
+                      let cep = escverify.data.cep;
+                    try {
+                      const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${cep}/json/unicode/`);
+                      dispatch({type:'ESC_LOC', esc:re});
+                    } catch (error) {
+                      console.log(error.response);
+                    }
                 }catch(error){
                     dispatch({type:'ESC_EXIST', esc:{exists:'não'}});
                   

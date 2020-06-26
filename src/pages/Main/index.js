@@ -7,11 +7,8 @@ import Header from '../Header/index';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Padeiro from './padeiro.jpg';
-import Requ from '@material-ui/icons/HowToReg';
 import World from '@material-ui/icons/Language';
 import Secure from '@material-ui/icons/Security';
-import Store from '@material-ui/icons/Storefront';
-import Rend from '@material-ui/icons/Timeline';
 import Paper from '@material-ui/core/Paper';
 import aki from './Icon-Aki-2-branco.png';
 import Card from '@material-ui/core/Card';
@@ -19,7 +16,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import log from '../Header/logotipo-AKi-azul.png';
 import Grid from '@material-ui/core/Grid';
 import Rodape from '../rodape/index';
@@ -85,17 +81,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function BottomAppBar() {
   const classes = useStyles();
-  let history = useHistory();
 
-  function reque(){
-    return history.push('/requerentes')
-  }
-  function usuario(){
-    return history.push('/usuario')
-  }
-  function dash(){
-    return history.push('/esc')
-  }
+
   return (
     <React.Fragment>
         

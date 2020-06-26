@@ -1,89 +1,20 @@
-import React,{useState, useEffect, Form} from 'react';
+import React,{useState} from 'react';
 import Button from '@material-ui/core/Button';
-import * as Yup from 'yup';
 import Dialog from '@material-ui/core/Dialog';
-import HorizontalLabelPositionBelowStepper from './statusLoan';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import api from '../../services/api';
 import {makeStyles} from '@material-ui/core/styles';
-import {LibraryAdd} from '@material-ui/icons';
 import {TextField, CircularProgress, Typography, FormControl} from '@material-ui/core';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import {Face} from '@material-ui/icons';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
-  container:{
-      display:'flex',
-      flexDirection:'row',
-      justifyContent:'flex-star',
-      borderRadius:'15px',
-      marginTop:'30px',
-      height:'100vh',
-      backgroundColor:'white'
-
-  },
-  paper:{
-      width:'100%',
-      height:'50%',
-      marginTop:'20px',
-      marginBottom:'5px'
-
-  },
-  btnimg:{
-     display:'none'
-
-  },
-  paper2:{
-      width:'100%',
-      height:'150px',
-      marginTop:'15px'
-
-
-  },
-  select:{
-      width:'20%',
-      backgroundColor:'#00acba',
-      color:'white',
-      display:'flex',
-      borderRadius:'15px',
-      cursor:'pointer',
-      margin:'10px'
-
-      
-
-  },
-  icons:{
-    width:'100%',
-    height:'50px',
-    color:'white'
-  },
-  logoesc:{
-      width:'100%',
-      borderRadius:'15px'
-  },
-  up:{
-      color:'green'
-  },
-  down:{
-      color:'red'
-
-  },
-  tabela:{
-
-  }
- 
-}));
 
 
 
@@ -96,27 +27,18 @@ export default function ResponsiveDialog(props) {
   const [load, setLoad] = useState(false);
   const [opens, setOpens] = useState(false);
   const [opene, setOpene] = useState(false);
-  const [cep,setCep] = useState(0);
   const [cepinfo, setCepinfo] = useState(0);
-  const classes = useStyles();
   const [meses, setMeses] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [image,setImage] = useState('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const v = props.info;
 
 
-const Schema = Yup.object().shape({
-  cep: Yup.number().min(8)
-  .required("Obrigatório"),
-  meses: Yup.number().max(36).required("Obrigatório"),
-  descricao: Yup.string().max(255).required()
-  
-});
+
   const handleSend = async (props)=>{
 
     setLoad(true);
-    if(cepinfo==0 || opene == true){
+    if(cepinfo===0 || opene === true){
       setLoad(false);
       return null
     }else{

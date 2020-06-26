@@ -3,7 +3,7 @@ import {makeStyles, withStyles } from '@material-ui/core/styles';
 import api from '../../services/api';
 import {CheckRounded} from '@material-ui/icons';
 import {useSelector, useDispatch} from 'react-redux';
-import {Avatar, Backdrop, Button,CircularProgress, Grid, Slider} from '@material-ui/core';
+import {Button,CircularProgress, Grid, Slider} from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -77,10 +77,8 @@ const useStyles = makeStyles(
 export default function CustomizedExpansionPanels() {
   const classes = useStyles();
   const [loans, setLoans] = useState([0]);
-  const past_loan = useSelector(state => state.req.req_aceito);
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
-  const [erro, setErro] = useState(false);
   const [expanded, setExpanded] = React.useState(1);
   const [valor,setValor] = useState(0);
 
@@ -100,7 +98,6 @@ export default function CustomizedExpansionPanels() {
       setLoans(res);
 
     } catch (error) {
-      setErro(true);
       setLoad(false);
       console.log(error.response);
       
@@ -171,9 +168,9 @@ export default function CustomizedExpansionPanels() {
   function dataAtualFormatada(){
     var data = new Date(),
         dia  = data.getDate().toString(),
-        diaF = (dia.length == 1) ? '0'+dia : dia,
+        diaF = (dia.length === 1) ? '0'+dia : dia,
         mes  = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-        mesF = (mes.length == 1) ? '0'+mes : mes,
+        mesF = (mes.length === 1) ? '0'+mes : mes,
         anoF = data.getFullYear();
     return diaF+"/"+mesF+"/"+anoF;
 }
@@ -189,7 +186,7 @@ export default function CustomizedExpansionPanels() {
            <ExpansionPanel square expanded={expanded === loan.uid} onChange={handleChange(loan.uid)}>
            <ExpansionPanelSummary aria-controls="panel1d-content" id={loan.uid}>
              <div align="left" className={classes.root}>
-               {loan.status == 3?<Typography variant="h6" style={{color:'#00acba'}}><CheckRounded color="inherit" />Aprovado!</Typography>:<Typography variant="h6" style={{color:'#c1c1c1'}}>Em análise</Typography>}
+               {loan.status === 3?<Typography variant="h6" style={{color:'#00acba'}}><CheckRounded color="inherit" />Aprovado!</Typography>:<Typography variant="h6" style={{color:'#c1c1c1'}}>Em análise</Typography>}
              </div>
              <div align="center" className={classes.root}>
                 <h2 style={{color:'#00acba'}}>Valor: R${loan.valor},00</h2>
@@ -232,7 +229,7 @@ export default function CustomizedExpansionPanels() {
 
                      </Grid> 
                      <Grid item xs>
-                        {!loan.status==3?<Button onClick={e => e.preventDefault(handleUpdate(loan.emprestimoId))} style={{backgroundColor:"#00acba"}}><CheckRounded color="inherit"/>Aprovar</Button>:null}
+                        {!loan.status===3?<Button onClick={e => e.preventDefault(handleUpdate(loan.emprestimoId))} style={{backgroundColor:"#00acba"}}><CheckRounded color="inherit"/>Aprovar</Button>:null}
                      </Grid>                 
 
               </Grid>

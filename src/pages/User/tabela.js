@@ -10,10 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MyData from './meus_dados';
 import MeusPlanos from './meus_planos';
-import Taxas from './minhas_taxas';
+// import Taxas from './minhas_taxas';
 import ReqAceitos from './req_aceitos';
-import Locais from './localizacoes';
-import {AccountCircle, AttachMoney, ShopTwo, SupervisedUserCircle, LocationCity} from '@material-ui/icons';
+// import Locais from './localizacoes';
+import {AccountCircle, AttachMoney, SupervisedUserCircle} from '@material-ui/icons';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -90,15 +90,15 @@ export default function FullWidthTabs() {
 
           />} {...a11yProps(0)}></Tab>
           {/* Minhas taxas */}
-          <Tab icon={<AttachMoney className={classes.icon}           
-          />} {...a11yProps(1)} />
+          {/* <Tab icon={<AttachMoney className={classes.icon}           
+          />} {...a11yProps(1)} /> */}
           {/* NÃO IMPLEMENTADO */}
           {/* Meus planos */}
           {/* <Tab icon={<ShopTwo className={classes.icon} />} {...a11yProps(2)} /> */}
 
 
           {/* Requerentes Aceitos */}
-          <Tab icon={<SupervisedUserCircle className={classes.icon} />} {...a11yProps(2)} />
+          <Tab icon={<SupervisedUserCircle className={classes.icon} />} {...a11yProps(1)} />
 
           {/* Cidades de atntimento */}
           {/* NÃO IMPLEMENTADO */}
@@ -115,10 +115,10 @@ export default function FullWidthTabs() {
         <TabPanel value={value} index={0} dir={theme.direction}>
           {user?<MyData/>:null}
         </TabPanel>
+        {/* <TabPanel value={value} index={1} dir={theme.direction}>
+          <MeusPlanos/>
+        </TabPanel> */}
         <TabPanel value={value} index={1} dir={theme.direction}>
-          {esc?<MeusPlanos/>:null}
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
           <ReqAceitos/>
         </TabPanel>
        

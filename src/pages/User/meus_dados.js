@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
-import UpdateUser from '../Update/updateUser';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {useSelector, useDispatch} from 'react-redux';
-import {Typography, Paper, Grid} from '@material-ui/core';
+import {Typography, Slider,Paper, Grid} from '@material-ui/core';
 
 
 
@@ -31,20 +30,69 @@ const useStyles = makeStyles({
 const MeusDados = ()=>{
     const classes = useStyles();
     const user = useSelector(state=> state.usuario.user);
+    const esc = useSelector(state=> state.esc.esc);
+    const taxa = useSelector(state=> state.esc.esc_taxas);
+
     const dispatch = useDispatch();
+    const [valor,setValor] = useState(0);
+  
+  
+
+    const PrettoSlider = withStyles({
+        root: {
+          color: '#00acba',
+          width:'50px'
+          
+        },
+       
+        thumb: {
+          height: 24,
+          width: 24,
+          backgroundColor: '#fff',
+          border: '2px solid currentColor',
+          marginTop: -8,
+          marginLeft: -12,
+          '&:focus, &:hover, &$active': {
+            boxShadow: 'inherit',
+          },
+        },
+        active: {},
+        valueLabel: {
+          left: 'calc(-50% + 4px)',
+        },
+        track: {
+          height: 8,
+          borderRadius: 4,
+        },
+        rail: {
+          height: 8,
+          borderRadius: 4,
+        },
+      })(Slider);
+    let time = null
+    let tgtv =0
+    //Simples debounce para o slider
+    function handleChange(e, newValue){
+        clearTimeout(time)
+        time = setTimeout(()=>{
+           tgtv = newValue
+        setValor(tgtv)
+        dispatch({type:'ESC_TAXAS', taxa_geral:tgtv});
+          
+        }, 1000)
+
+    }
+  
+
 
     return <>
             <Paper className={classes.paper} elevation={2}>
-                <div align="center">
-                        <Typography variant="h6">
-                            Meus dados
-                        </Typography>
-                </div>
+                
                 {/* <div align="right">
                         <UpdateUser/>
                 </div> */}
                 <Grid container flexDirection="row"  >
-                    <Grid item xs={12} sm={6} >
+                    <Grid item xs >
                         <ul style={{listStyle:'none'}}>
                                 <li>
                                       <p>
@@ -79,9 +127,35 @@ const MeusDados = ()=>{
                                 </li>
                                        
                          </ul>
-                     </Grid>                 
+                     </Grid>   
+                     
+                     <Grid item xs style={{display:'flex', padding:'10px'}}>
+                     <PrettoSlider orientation="vertical" valueLabelDisplay="auto" aria-label="pretto slider"  onChange={	handleChange}/>
 
-                        </Grid>
+                        <div align="center" style={{padding:'100px'}}>
+                             <h1 style={{color:'#00acba'}}>Taxa nominal de {valor === 0?taxa: valor}% ao mês</h1>
+
+                        </div>                    
+
+                        
+
+                     </Grid>
+                    
+
+                    </Grid>
+                    <Grid container flexDirection="row"  >
+                    <Grid item xs={12} sm={6} style={{padding:'10px'}}>                        
+                    
+                      <b>Limite de crédito:</b>  <div className={classes.dado}>{esc?esc.limiteDeCredito:0}</div>
+                      <br></br>
+                      <b>Linhas de Crédito:</b><div className={classes.dado}>{esc?esc.linhaDeCredito:0}</div>
+                      <br></br>
+                      <b>Ultimo Recebimento:</b><div className={classes.dado}>{esc?esc.ultimoRecebimento:0}</div>                              
+                     </Grid>
+                    
+
+                    </Grid>
+                    
             </Paper>
     </>
 }

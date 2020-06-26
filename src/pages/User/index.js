@@ -1,17 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import Header from '../Header';
-import api from '../../services/api';
-import {useDispatch, useSelector} from 'react-redux';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { LibraryAdd} from '@material-ui/icons';
 import Tabela from './tabela';
 import UpdateEsc from '../Update/updateEsc';
 import {ArrowUpward, ArrowDownward} from '@material-ui/icons';
 import Initial from './initial_config';
-import {useHistory} from 'react-router-dom';
-import { Container, Typography, Paper, Avatar, Grid} from '@material-ui/core';
+import { Container,Paper, Grid} from '@material-ui/core';
 
 
 
@@ -80,13 +75,7 @@ const useStyles = makeStyles(theme => ({
 
 const Usuario = ()=>{
     const classes = useStyles();    
-    const [file,setFile] = useState([0]);
-    const [load, setLoad] = useState(true);
-    const dispatch = useDispatch();
     const esc = useSelector(state => state.esc.esc);
-    const user = useSelector(state => state.usuario.user);
-    const history = useHistory();
-    const i = localStorage.getItem('LOGO');
 
    
     //Quando for implementado o uso de avatares utilizaremos

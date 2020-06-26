@@ -29,14 +29,6 @@ export default function Initial(){
     function Alert(props) {
       return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
-    function erroMessage(erro){
-      return setOpenErro(true);
-  
-    }
-    function succMessage(){
-      return setSucc(true);
-  
-    }
     function handleClickOpen(){
       return setOpen(true);
     }    

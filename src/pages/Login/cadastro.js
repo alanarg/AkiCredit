@@ -1,21 +1,14 @@
 import React,{useState} from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './css.css';
-import ReactDOM from 'react-dom';
 import api from '../../services/api';
 import md5 from 'md5';
 import Error from './error';
-import axios from "axios";
-import $ from 'jquery';
-import cnpj from 'cpf-cnpj-validator';
 import Switch from '@material-ui/core/Switch';
 import history from '../../history';
-import Typography from '@material-ui/core/Typography';
 import validCnpj from './validCnpj'; 
-import {Checkbox } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { validate as validateCPF} from 'gerador-validador-cpf';
 
@@ -23,12 +16,11 @@ import { validate as validateCPF} from 'gerador-validador-cpf';
 const Cadastro = () => {
     const [cpfv,setCpf] = useState('');
     const [cnpjv,setCnpj] = useState('');
-    const [check, setCheck] = useState(0);
     const [loading, setLoading] = useState(false);
 	const [checked, setChecked] = React.useState(0);
 
     const toggleChecked = () => {
-        checked==1?setChecked(0):setChecked(1);
+        checked===1?setChecked(0):setChecked(1);
     };
         return (
             

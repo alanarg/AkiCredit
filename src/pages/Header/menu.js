@@ -1,28 +1,19 @@
 import React,{useState} from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
-import api from '../../services/api';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useHistory } from "react-router-dom";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import IconButton from '@material-ui/core/IconButton';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/PowerSettingsNew';
 import DraftsIcon from '@material-ui/icons/ViewQuilt';
 import SendIcon from '@material-ui/icons/Home';
 import Options from '@material-ui/icons/Apps';
-import {useDispatch, useSelector} from 'react-redux';
-import { useScrollTrigger } from '@material-ui/core';
+import {useDispatch} from 'react-redux';
 
-const StyledBack = withStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-}))(Backdrop);
+
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -56,8 +47,6 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
   let history = useHistory();
 
 
@@ -75,10 +64,8 @@ export default function CustomizedMenus() {
   };
 
   async function handleHome(){
-       setOpen(true);
        history.push('/usuario');
-       setOpen(false);
-       return setOpen(false);
+       
   }
 
   return (
