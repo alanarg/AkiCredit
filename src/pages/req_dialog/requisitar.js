@@ -86,6 +86,8 @@ export default function ResponsiveDialog(props) {
 
         console.log(error.response);
 
+      }finally{
+        window.stop();
       }
   };
   const handleClickOpen = () => {

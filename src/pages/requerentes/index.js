@@ -75,7 +75,9 @@ const Requerentes = (props) =>{
             return setErromessage(true);
 
 
-        };
+        }finally{
+            window.stop();
+        }
     }
         
             

@@ -97,10 +97,12 @@ export default function CustomizedExpansionPanels() {
       setLoad(false);
       setLoans(res);
 
-    } catch (error) {
+    }catch (error) {
       setLoad(false);
       console.log(error.response);
       
+    }finally{
+        window.stop();
     }
   }
   async function handleUpdate(loan_id){
