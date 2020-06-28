@@ -56,7 +56,7 @@ const Requerentes = (props) =>{
             let reqs = Object.values(requerente.data);
            
              let reqs_filtred = reqs.filter((req)=>{
-                return req.geolocation.city === loc.localidade && req.status === 1;
+                return req.geolocation.city === loc.localidade && req.status === 1 || req.status ===0;
             });
             console.log(reqs_filtred);
 
