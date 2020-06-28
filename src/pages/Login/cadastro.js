@@ -65,7 +65,6 @@ const Cadastro = () => {
                     cnpj: fields.cnpj,
                     cpf: fields.cpf,
                     email: fields.email,
-                    logo: {},
                     nome: fields.nome,
                     password: md5(fields.password),
                     sobrenome: fields.sobrenome,
