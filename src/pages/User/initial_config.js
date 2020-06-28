@@ -18,6 +18,7 @@ export default function Initial(){
     const [cep, setCep] = useState("");
     const [telefone, setTelefone] = useState("");
     const [montante, setMontante] = useState("");
+    const [taxa, setTaxa] = useState(0);
     const [cidades, setCidades] = useState([0]);
     const [planos, setPlanos] = useState([0]);
     const [load, setLoad] = useState(false);
@@ -32,12 +33,11 @@ export default function Initial(){
     async function handlePronto(){
       setOpen(true);
       setLoad(true);
-        
-
         const values = {
             cpf:user.cpf,
             nomeResponsavel:user.nome,
             cnpj:user.cnpj,
+            taxaGeral:taxa,
             nomeESC:nomeEsc,
             email:user.email,
             cep:cep,
@@ -55,8 +55,7 @@ export default function Initial(){
           console.log(re);
 
         }catch(error){
-           setOpen(true);
-
+          setOpen(true);
           setOpenErro(true);
           console.log(error.response);
 
@@ -64,18 +63,14 @@ export default function Initial(){
         try{
           await api.post('/esc/create', values,  {headers:{'Authorization': localStorage.getItem('U_ID')}} )
           setSucc(true);
+          setLoad(false);
           dispath({type:'ESC_OBJECT', esc:{esc_object:values}})
           setOpen(false);
-
-
         }catch(error){
           setOpen(true);
-
-          console.log(error.response.data);
+          setLoad(false);
+          console.log(error.response);
           setOpenErro(true);
-
-
-
         }
     }
     return <>   
@@ -125,6 +120,16 @@ export default function Initial(){
             type="number"
             required
             onBlur={e=> e.preventDefault(setMontante(e.target.value)) }
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            required
+            id="taxa"
+            label="Taxa nominal"
+            type="number"
+            onBlur={e=> e.preventDefault(setTaxa(e.target.value)) }
             fullWidth
           />  
           <TextField

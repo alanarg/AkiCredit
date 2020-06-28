@@ -60,23 +60,23 @@ export default function Rodape(){
                     <div  className={classes.box}>
                 <ul className={classes.ul}>
                         <li>
-                      <div style={{display:'flex'}}>
-                         <img src={face} alt="akicredit_facebook" style={{width:'7%'}}></img>   
+                      <div style={{display:'flex', padding:'5px'}}>
+                         <img src={face} alt="akicredit_facebook" style={{width:'10%'}}></img>   
                         <a href="https://m.facebook.com/akicredit/" target="_blank" rel="noopener noreferrer"><p>Aki facebook</p></a>
                       </div>
                         </li>
                         <li>
                             
-                      <div style={{display:'flex'}}>
+                      <div style={{display:'flex', padding:'5px'}}>
 
-                            <img alt="akicredit_instagram" src={insta} style={{width:'7%'}}/>
+                            <img alt="akicredit_instagram" src={insta} style={{width:'10%'}}/>
                             <p>Aki instagram</p>
                         </div>
                         </li>
                         <li>
-                      <div style={{display:'flex'}}>
+                      <div style={{display:'flex', padding:'5px'}}>
 
-                            <img alt="akicredit_linkedin" src={linkedin} style={{width:'7%'}}/>
+                            <img alt="akicredit_linkedin" src={linkedin} style={{width:'10%'}}/>
                             <p>Aki linkedin</p>
                         </div>
                         </li>
@@ -88,10 +88,10 @@ export default function Rodape(){
                     <div  className={classes.box}>
                 <h4>Baixe o app</h4>
 
-                <div style={{display:'flex', margin:'0'}}>
+                <div style={{display:'flex', flexDirection:'column',margin:'0'}}>
 
-                    <img src={app} alt="akicredit_app" style={{width:'30%'}}/>
-                    <div>
+                    <img src={app} alt="akicredit_app" style={{width:'50%', marginBottom:'5px'}}/>
+                    
                     <p align="center">Segunda à Sábado das 06:00 às 19:00
                         Aki.Credit-Ajudar as ESC
                         Avenida Paulista 726
@@ -99,7 +99,7 @@ export default function Rodape(){
                         Bela Vista São Paulo-SP
                     </p>
                        <Typography align="center">(11) 3042-0055</Typography> 
-                       </div>
+                       
                 </div>
                 </div>
                 </Grid>

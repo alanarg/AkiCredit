@@ -68,28 +68,43 @@ export default function ResponsiveDialog(props) {
   }
   const handleChange = async (c)=>{
     setCepinfo(c);
+    if(c){
     setLoad(true);
-    try{
-        const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${c}/json/unicode/`);
-        dispatch({type:'USER_LOC', user:re.data});
-        console.log(re.data);
-        setCepinfo(re.data);
-        setLoad(false);
-        setOpen(true);
-        setOpene(false);
 
-      }catch(error){
-        setLoad(false);
-        setOpene(true);
+      try{
+          const re = await axios.get(`https://cors-anywhere.herokuapp.com/https://viacep.com.br/ws/${c}/json/unicode/`);
+          dispatch({type:'USER_LOC', user:re.data});
+          console.log(re.data);
+          setCepinfo(re.data);
+          setLoad(false);
+          setOpen(true);
+          setOpene(false);
 
-        setOpen(true);
+        }catch(error){
+          setLoad(false);
+          setOpene(true);
 
-        console.log(error.response);
+          setOpen(true);
 
-      }finally{
-        window.stop();
-      }
+          console.log(error.response);
+
+        }finally{
+          window.stop();
+        }
+    }else{
+      return alert("vazio");
+    }
   };
+//   let time = null
+//   let tgtv =0
+// //Simples debounce para o cep
+// function handleChange(){
+//   clearTimeout(time)
+//   time = setTimeout(()=>{
+    
+//     setCep(tgtv)
+
+//   }, 1000)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -130,7 +145,7 @@ export default function ResponsiveDialog(props) {
             autoFocus="false" 
             placeHolder="00000000" 
             classes={{color:'#00acba'}} 
-            onChange={e=> e.preventDefault(handleChange(e.target.value))} 
+            onBlur={e=> e.preventDefault(handleChange(e.target.value))} 
             required 
           ></TextField>
           </DialogContentText>
