@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Padeiro from './padeiro.jpg';
 import World from '@material-ui/icons/Language';
 import Secure from '@material-ui/icons/Security';
-import Paper from '@material-ui/core/Paper';
 import aki from './Icon-Aki-2-branco.png';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -90,7 +89,7 @@ export default function BottomAppBar() {
       
 
       <CssBaseline />
-        <Grid container style={{backgroundImage:`url(${Padeiro})`, backgroundSize:'100%', backgroundColor:'#E0F8F7', padding:'50px',backgroundRepeat:"no-repeat", marginTop:'10px'}}>
+        <Grid container style={{backgroundImage:`url(${Padeiro})`, backgroundAttachment:'fixed', backgroundSize:'100vw 100vh', backgroundColor:'#E0F8F7', padding:'50px',backgroundRepeat:"no-repeat", marginTop:'10px'}}>
         {/* <div style={{backgroundImage:`url(${Padeiro})`, backgroundSize:'100%',width:'100%', marginTop:"-50px",backgroundRepeat:"no-repeat", backgroundPosition:"center"}}> */}
         <Grid
             container
@@ -99,37 +98,37 @@ export default function BottomAppBar() {
            alignItems="flex-end"
            xs={12} sm={6}
           >
-            <Grid item >
+            <Grid item style={{marginBottom:'30px'}}>
             <img alt="logo"  width="45%" src={log}></img>
 
             </Grid>
             <Grid item xs>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #E0F8F7 70%)", borderRadius:"100px",padding:'10px', marginBottom:'50px', marginTop:'30px'}}>
+           <div class="cloud" >
            <Typography variant="h6">
            <Devices/>
            Você Empresa Simples de Crédito!
 
               </Typography>
-           </Paper>
+           </div>
            </Grid>
            <Grid item xs>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg,#00ACBA 40%, #E0F8F7 70%)", borderRadius:"100px",padding:'10px', marginBottom:'50px' }}>
+           <div class="cloud" >
            <Typography variant="h6">
            <Devices />
 
            Tenha total supervisão tributária
 
               </Typography>
-           </Paper>
+           </div>
            </Grid>
            <Grid item xs>
-           <Paper elevation={3} style={{background:"linear-gradient(45deg, #00ACBA 40%, #E0F8F7 70%)",borderRadius:"100px", padding:'10px'}}>
+           <div class="cloud" >
            <Typography variant="h6" fontFamily="baboo">
            <Devices />
 
            Planeje e aprove requisições
               </Typography>
-           </Paper>
+           </div>
            </Grid>
         </Grid>
     
