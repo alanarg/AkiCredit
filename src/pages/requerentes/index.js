@@ -56,6 +56,7 @@ const Requerentes = (props) =>{
             let reqs = Object.values(requerente.data);
            
              let reqs_filtred = reqs.filter((req)=>{
+                 // eslint-disable-next-line
                 return req.geolocation.city === loc.localidade && req.status === 1 || req.status ===0;
             });
             console.log(reqs_filtred);
