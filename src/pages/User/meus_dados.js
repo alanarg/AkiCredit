@@ -93,40 +93,40 @@ const MeusDados = ()=>{
                 </div> */}
                 <Grid container flexDirection="row"  >
                     <Grid item xs >
-                        <ul style={{listStyle:'none'}}>
-                                <li>
+                        {/* <ul style={{listStyle:'none'}}> */}
+                                {/* <li> */}
                                       <p>
                                           <b>Nome:</b>
                                           <div className={classes.dado}>{user.nome+" "+user.sobrenome}</div>
                                      </p>
-                                </li>
-                                <li>
+                                {/* </li>
+                                <li> */}
                                     <b>CPF:</b>
                                     <div className={classes.dado}>{user.cpf}</div>
 
-                                </li>
-                                <li>
+                                {/* </li>
+                                <li> */}
                                     <b>CNPJ:</b>
                                     <div className={classes.dado}>{user.cnpj}</div>
 
-                                </li>
-                                <li>
+                                {/* </li>
+                                <li> */}
                                 <b>EMAIL:</b>
                                 <div className={classes.dado}>{user.email}</div>
 
-                                </li>
-                                <li>
+                                {/* </li>
+                                <li> */}
                                 <b>CPF:</b>
                                 <div className={classes.dado}>{user.cpf}</div>
 
-                                </li>
-                                <li>
+                                {/* </li>
+                                <li> */}
                                 <b>CNPJ:</b>
                                 <div className={classes.dado}>{user.cnpj}</div>
 
-                                </li>
+                                {/* </li>
                                        
-                         </ul>
+                         </ul> */}
                      </Grid>   
                      
                      <Grid item xs style={{display:'flex', padding:'10px'}}>

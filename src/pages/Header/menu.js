@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useHistory } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/PowerSettingsNew';
@@ -89,9 +89,9 @@ export default function CustomizedMenus() {
         onClose={handleClose}
       >
       
-        <StyledMenuItem onClick={handleHome}>
+        <StyledMenuItem >
           <ListItemIcon>
-              <SendIcon fontSize="small" />
+              <Link to="/usuario"> <SendIcon fontSize="small" /></Link>
           </ListItemIcon>
           <ListItemText primary="Home" />
         </StyledMenuItem>
